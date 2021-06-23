@@ -1,3 +1,6 @@
+const coins = require('../models/coins');
+
+
 module.exports.list = (req, res, next) => {
-  res.json(['😀', '😳', '🙄']);
+  coins.list(req,res);
 };
