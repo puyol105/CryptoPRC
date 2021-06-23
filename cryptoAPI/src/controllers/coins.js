@@ -1,6 +1,5 @@
 const coins = require('../models/coins');
 
-
-module.exports.list = (req, res, next) => {
-  coins.list(req,res);
+module.exports.list = (req, res) => {
+  coins.list(req, res);
 };

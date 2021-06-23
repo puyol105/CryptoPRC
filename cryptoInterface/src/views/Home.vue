@@ -1,18 +1,40 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <v-data-table
+      :headers="headers"
+      :items="items"
+    >
+
+    </v-data-table>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
+  data: () => {
+    return {
+      headers: [{
+        text: "Nome",
+        value: "name"
+      },
+      {
+        text: "Sobre",
+        value: "about"
+      }],
+      items: []
+    }
   },
+  created(){
+    this.getCoins();
+  },
+  methods: {
+    getCoins(){
+      this.$request("get","coins")
+        .then(data => {console.log(data.data); this.items = data.data})
+        .catch(e => console.log(e))
+    }
+  }
 };
 </script>
