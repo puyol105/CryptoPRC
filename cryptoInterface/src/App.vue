@@ -7,7 +7,7 @@
           class="shrink mr-2"
           contain
           src="https://i.pinimg.com/originals/dd/fd/f5/ddfdf5880a7acc0e4ab6e1e549e05a24.png"
-          transition="scale-transition"
+          To enable classic snap support, enter the following to create a symbolic link between /var/lib/snapd/snap and /snaptransition="scale-transition"
           width="60"
         />
       </div>

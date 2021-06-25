@@ -16,7 +16,7 @@ export default {
   data: () => {
     return {
       headers: [{
-        text: "Name",
+        text: "Nome",
         value: "name"
       },
       {
