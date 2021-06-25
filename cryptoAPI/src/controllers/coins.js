@@ -14,11 +14,12 @@ const db = require('../config/db');
 
 Coins.listCoins = async function () {
   try {
-    const result = await db.query(`select ?name ?symbol ?slug where { 
+    const result = await db.query(`select ?name ?symbol ?slug ?id  where { 
           ?coin a :Coin .
           ?coin :name ?name .
           ?coin :symbol ?symbol .
           ?coin :slug ?slug .
+          ?coin :id ?id .
           
       } limit 100`);
     

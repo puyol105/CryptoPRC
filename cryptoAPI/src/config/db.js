@@ -10,7 +10,7 @@ const prefixes = `
     PREFIX : <http://www.semanticweb.org/ricardoleal24/ontologies/cryptomoedas#>
 `;
 //const getLink = `http://${process.env.BASE_URL}/repositories/crypto?query=`;
-const getLink = `http://www.localhost:7200/repositories/cryptomoedas?query=`;
+const getLink = `http://localhost:7200/repositories/cryptomoedas?query=`;
 
 function toJS(response) {
   let list = [];

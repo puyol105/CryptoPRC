@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 //Lista Repositórios
-router.get('/repos', function(req, res) {
+router.get('/repos', function(_req, res) {
   axios.get("http://localhost:7200/rest/repositories")
     .then(dados =>{
         console.dir(dados.data)
