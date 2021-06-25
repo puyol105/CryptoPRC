@@ -16,12 +16,16 @@ export default {
   data: () => {
     return {
       headers: [{
-        text: "Nome",
+        text: "Name",
         value: "name"
       },
       {
-        text: "Sobre",
-        value: "about"
+        text: "Symbol",
+        value: "symbol"
+      },
+      {
+        text: "Slug",
+        value: "slug"
       }],
       items: []
     }
@@ -30,7 +34,7 @@ export default {
     this.getCoins();
   },
   methods: {
-    getCoins(){
+    getCoins(){ 
       this.$request("get","coins")
         .then(data => {console.log(data.data); this.items = data.data})
         .catch(e => console.log(e))

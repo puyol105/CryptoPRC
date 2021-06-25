@@ -17,7 +17,7 @@ function makeRequest(request, path, data, headers) {
         headers: headers
       });
     case "get":
-      return axios.get("http://localhost:5102/api/v1/" + path, {
+      return axios.get("http://localhost:5102/" + path, {
         headers: headers
       });
     case "put":
