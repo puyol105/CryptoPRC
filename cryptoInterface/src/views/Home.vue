@@ -1,10 +1,11 @@
-<template>
+<template >
   <div>
     <v-data-table
+      class="transparent"
       :headers="headers"
       :items="items"
+      :variavel="true"
     >
-
     </v-data-table>
   </div>
 </template>
@@ -27,7 +28,8 @@ export default {
         text: "Slug",
         value: "slug"
       }],
-      items: []
+      items: [],
+      variavel: false,
     }
   },
   created(){
