@@ -20,6 +20,10 @@ function makeRequest(request, path, data, headers) {
       return axios.get("http://localhost:5102/" + path, {
         headers: headers
       });
+    case "getp":
+      return axios.get("http://localhost:9000/" + path, {
+        headers: headers
+      });
     case "put":
       return axios.put(process.env.API_URL + path, data, {
         headers: headers

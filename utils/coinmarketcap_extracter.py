@@ -44,14 +44,15 @@ def extract_coin(page:str, coins:list, n_pag:int) -> list:
   soup = BeautifulSoup(page, 'html.parser')
   #print('html', soup.prettify())
 
-  n_iter = 0
+  n_iter = 1
   for tr in soup.find('tbody'):
-    if n_iter < 100:
+    if n_iter < 101:
       coin_url_soup = tr.find('a', class_='cmc-link').get('href')
       coin_url = coin_url_soup
-    
+      
       coin = {}
-      coin['rank'] = (n_pag +1) * n_iter
+      #coin['rank'] = (n_pag +1) * n_iter
+      coin['rank'] = n_iter + n_pag*100
       n_iter+=1
 
       coin_url = f'https://coinmarketcap.com{coin_url}'
