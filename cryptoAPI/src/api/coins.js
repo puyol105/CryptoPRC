@@ -14,10 +14,16 @@ function aux(ids_string){
 } 
 
 router.get('/', function(req, res){
-  Coins.listCoins()
-    .then( dados => res.json(dados))
-    .catch( e => res.status(500).send(`Error listing Coins ${e}`))
-});
+  if(req.query.size && req.query.page){
+    Coins.listCoins()
+      .then( dados => {
+        console.log('dados', dados.sort((a1,a2) => parseInt(a1.id) - parseInt(a2.id)))
+        res.json({totalItems: dados.length , numberOfPages: Math.floor(dados.length/req.query.size), dados : dados.sort((a1,a2) => parseInt(a1.id) > parseInt(a2.id)).splice(req.query.page * req.query.size, req.query.size)})
+        
+      })
+      .catch( e => res.status(500).send(`Error listing Coins ${e}`))
+  }
+})
 
 // router.get('/', async function (req, res) {
 //   Coins.listCoins()

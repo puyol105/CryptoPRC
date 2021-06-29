@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
 
-
 Vue.use(Vuetify);
 
 export default new Vuetify({
@@ -15,12 +14,12 @@ export default new Vuetify({
         background: "#b8cfcd",
       },
       dark: {
-        primary: "#603F59", 
+        primary: "#603F59",
         background: "603F59",
       },
     },
     options: {
-      customProperties: true
+      customProperties: true,
     },
   },
 });

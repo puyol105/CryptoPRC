@@ -7,7 +7,7 @@ import vuetify from "./plugins/vuetify";
 import request from "./plugins/request";
 
 Vue.config.productionTip = false;
-Vue.use(request)
+Vue.use(request);
 
 new Vue({
   router,
