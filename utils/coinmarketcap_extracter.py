@@ -21,39 +21,41 @@ marketpairs_id_list = []
 
 def extract_coins(coins:dict) -> dict:
   coins_list = []
-  n_pag=0;
-
-  while n_pag < 3:
+  n_pag = 0;
+  rank = 1
+  
+  while n_pag < 1:
     if(n_pag == 0):
       page_url = 'https://coinmarketcap.com/'
-      n_pag+=1
     else:
       page_url = f'https://coinmarketcap.com/?page={n_pag}'
-      n_pag+=1
+    
+    n_pag+=1
       
     time.sleep(5)
     page_request = requests.get(page_url)
-    coins_list = extract_coin(page_request.text, coins_list, n_pag)
+    rank, coins_list = extract_coin(page_request.text, coins_list, rank)
   
   coins['cryptomoedas'] = coins_list
   return coins
 
 # --------------------------------------------------------------------------------------------------
 
-def extract_coin(page:str, coins:list, n_pag:int) -> list:
+def extract_coin(page:str, coins:list, rank:int) -> list:
   soup = BeautifulSoup(page, 'html.parser')
   #print('html', soup.prettify())
 
-  n_iter = 1
+  n_iter = 0
   for tr in soup.find('tbody'):
-    if n_iter < 101:
+    
+    coin = {}
+    coin['rank'] = rank
+    rank +=1
+    
+    if n_iter < 10:
+      n_iter += 1
       coin_url_soup = tr.find('a', class_='cmc-link').get('href')
       coin_url = coin_url_soup
-      
-      coin = {}
-      #coin['rank'] = (n_pag +1) * n_iter
-      coin['rank'] = n_iter + n_pag*100
-      n_iter+=1
 
       coin_url = f'https://coinmarketcap.com{coin_url}'
 
@@ -62,7 +64,6 @@ def extract_coin(page:str, coins:list, n_pag:int) -> list:
 
       soup = BeautifulSoup(r.text, 'html.parser')
       #print('html', soup.prettify())
-
 
       if(nome_soup := soup.find('h2', class_='sc-1q9q90x-0 iYFMbU h1___3QSYG')):
         nome = nome_soup.get_text("|", strip=True).split('|')[0]
@@ -100,7 +101,6 @@ def extract_coin(page:str, coins:list, n_pag:int) -> list:
 
           # Coins Links
           if(table_header.string == f'{nome} Links'):
-
             table_links = t.find_all('div', class_='sc-16r8icm-0 elzRBB')
             links = [] 
             explorers = []
@@ -162,6 +162,7 @@ def extract_coin(page:str, coins:list, n_pag:int) -> list:
 
               fields = tg.find_all('div', class_='tagBadge___3p_Pk')
               prop_list = []
+              
               for f in fields:
                 prop_list.append(f.string)
 
@@ -172,108 +173,123 @@ def extract_coin(page:str, coins:list, n_pag:int) -> list:
             #print('outro\n table_header: ', table_header.string, '\n')
 
       coins.append(coin)
-  return coins
+
+  return (rank, coins)
 
 # --------------------------------------------------------------------------------------------------
 
 def extract_exchanges(exchanges:dict) -> dict:
+
   exchanges_list = []
   base_url = 'https://coinmarketcap.com'
 
                 # vazia é a spot
-  exchange_types = ['', 'derivatives', 'dex', 'lending']
+  #exchange_types = ['', 'derivatives', 'dex', 'lending']
+  exchange_types = [ 'dex', 'lending']
+
   for exchange_type in exchange_types:
     r = requests.get('https://coinmarketcap.com/rankings/exchanges/' + exchange_type)
 
-    time.sleep(2.5)
+    time.sleep(1)
     
     exchanges_soup = BeautifulSoup(r.text, 'html.parser')
 
     exchanges_soup = exchanges_soup.find('tbody')
+    
+    n_iter = 0
     for exchange_soup_tr in exchanges_soup.find_all('tr'):
-      exchange = {}
+     # print('n_iter', n_iter, 'exchange_soup_tr', exchange_soup_tr)
+      n_iter +=1
 
-      exchange_href = exchange_soup_tr.find('a', class_='cmc-link').get('href')
-      
-      slug = exchange_href.split('/')[2]
-      
-      exchange['slug'] = slug
+      if(n_iter > 30):
 
-      exchange_request = requests.get(base_url + exchange_href)
-      
-      time.sleep(1)
+        exchange = {}
 
-      exchange_soup = BeautifulSoup(exchange_request.text, 'html.parser')
-      
-      if(nome_soup := exchange_soup.find('h2', class_='sc-1q9q90x-0 sc-1xafy60-3 aeSJT')):
-        exchange['name'] = nome_soup.string
-
-      if(exchange_type == ''):
-        exchange_type = 'spot'
-      
-      exchange['type'] = exchange_type
-      
-      if( data_json := exchange_soup.find('script', { "id" : "__NEXT_DATA__"}).string):
-        if(id := re.search(r'info":{"id":(\d*?),', data_json)):
-          exchange['id'] = id.group(1)
-      
-      if(about_soup := exchange_soup.find('div', class_='sc-2qtjgt-0 eApVPN')):
-        about = ''
-        for p_about in about_soup.find_all('p'):
-          #print('p_about: ', p_about, '\np_about get_text()', p_about.get_text(), 'type p_about get_text()', type(p_about.get_text()))
-          about = about + p_about.get_text()
+        if( exchange_href := exchange_soup_tr.find('a', class_='cmc-link').get('href')):
+          slug = exchange_href.split('/')[2]
         
-        if( span_about_soup := about_soup.find('span')):
-          about = about + span_about_soup.get_text()
-        
-        exchange['about'] = about
+        exchange['slug'] = slug
 
-      exchange_info_ul = exchange_soup.find('ul', class_ = 'uxo8xk-0 jlcQeb cmc-details-panel-links')
-      
-      others = []
-      for exchange_info_a in exchange_info_ul.find_all('a'):
-        info = exchange_info_a.string
-        if(info == 'Chat'):
-          exchange['chat'] = exchange_info_a.get('href')
+        exchange_request = requests.get(base_url + exchange_href)
         
-        elif(info == 'Fees'):
-          exchange['fees'] = exchange_info_a.get('href')
+        time.sleep(1)
+
+        exchange_soup = BeautifulSoup(exchange_request.text, 'html.parser')
         
-        else:
-          others.append(exchange_info_a.get('href'))
-      
-      exchange['website'] = others[0]
-      others.pop(0)
-      exchange['others'] = others
-      
-      # Exchange Market Pairs
+        if(nome_soup := exchange_soup.find('h2', class_='sc-1q9q90x-0 sc-1xafy60-3 aeSJT')):
+          exchange['name'] = nome_soup.string
 
-      if(exchange_type == 'derivatives'):
-        #perpetual
-        market_pairs_perpetual_request = requests.get(f'https://api.coinmarketcap.com/data-api/v3/exchange/market-pairs/latest?slug={slug}&category=perpetual&start=1&limit=500')
-        market_pairs_perpetual_json = json.loads(market_pairs_perpetual_request.text) #.json?
-        if (market_pairs_perpetual_json['status']['error_message'] == 'SUCCESS'):
-          exchange['pairs_perpetual'] = dict(market_pairs_perpetual_json.get('data'))
+        if(exchange_type == ''):
+          exchange_type = 'spot'
         
-        #futures
-        market_pairs_futures_request = requests.get(f'https://api.coinmarketcap.com/data-api/v3/exchange/market-pairs/latest?slug={slug}&category=futures&start=1&limit=500')
-        market_pairs_futures_json = json.loads(market_pairs_futures_request.text)
-        if (market_pairs_futures_json['status']['error_message'] == 'SUCCESS'):
-          exchange['pairs_futures'] = dict(market_pairs_futures_json.get('data'))
-
-      else:
-        #spot
-        market_pairs_spot_request = requests.get(f'https://api.coinmarketcap.com/data-api/v3/exchange/market-pairs/latest?slug={slug}&category=spot&start=1&limit=500')
-        market_pairs_spot_json = json.loads(market_pairs_spot_request.text)
+        exchange['type'] = exchange_type
         
-        if (market_pairs_spot_json['status']['error_message'] == 'SUCCESS'):
-          exchange['pairs_spot'] = dict(market_pairs_spot_json.get('data'))
+        if( data_json := exchange_soup.find('script', { "id" : "__NEXT_DATA__"}).string):
+          if(id := re.search(r'info":{"id":(\d*?),', data_json)):
+            exchange['id'] = id.group(1)
+        
+        if(about_soup := exchange_soup.find('div', class_='sc-2qtjgt-0 eApVPN')):
+          about = ''
+          for p_about in about_soup.find_all('p'):
+            #print('p_about: ', p_about, '\np_about get_text()', p_about.get_text(), 'type p_about get_text()', type(p_about.get_text()))
+            about = about + p_about.get_text()
+          
+          if( span_about_soup := about_soup.find('span')):
+            about = about + span_about_soup.get_text()
+          
+          exchange['about'] = about
 
-        #with open(f'{slug}_{exchange_type}.json', 'w', encoding='utf-8') as f:
-        #  json.dump(market_pairs_spot_json, f, ensure_ascii=False, indent=4)
+        if(exchange_info_ul := exchange_soup.find('ul', class_ = 'uxo8xk-0 jlcQeb cmc-details-panel-links')):
+          others = []
+          
+          if(exchange_inf_ul := exchange_info_ul.find_all('a')):
+            for exchange_info_a in exchange_inf_ul:
 
-      #time.sleep(5.0)
-      exchanges_list.append(exchange)
+              info = exchange_info_a.string
+              
+              if(info == 'Chat'):
+                exchange['chat'] = exchange_info_a.get('href')
+              
+              elif(info == 'Fees'):
+                exchange['fees'] = exchange_info_a.get('href')
+              
+              else:
+                others.append(exchange_info_a.get('href'))
+              
+            
+            exchange['website'] = others[0]
+            others.pop(0)
+            exchange['others'] = others
+          
+
+          # Exchange Market Pairs
+
+          # if(exchange_type == 'derivatives'):
+          #   #perpetual
+          #   market_pairs_perpetual_request = requests.get(f'https://api.coinmarketcap.com/data-api/v3/exchange/market-pairs/latest?slug={slug}&category=perpetual&start=1&limit=500')
+          #   market_pairs_perpetual_json = json.loads(market_pairs_perpetual_request.text) #.json?
+          #   if (market_pairs_perpetual_json['status']['error_message'] == 'SUCCESS'):
+          #     exchange['pairs_perpetual'] = dict(market_pairs_perpetual_json.get('data'))
+          #   time.sleep(2.5)
+
+          #   #futures
+          #   market_pairs_futures_request = requests.get(f'https://api.coinmarketcap.com/data-api/v3/exchange/market-pairs/latest?slug={slug}&category=futures&start=1&limit=500')
+          #   market_pairs_futures_json = json.loads(market_pairs_futures_request.text)
+          #   if (market_pairs_futures_json['status']['error_message'] == 'SUCCESS'):
+          #     exchange['pairs_futures'] = dict(market_pairs_futures_json.get('data'))
+          #   time.sleep(2.5)
+
+          # else:
+          #   #spot
+          #   market_pairs_spot_request = requests.get(f'https://api.coinmarketcap.com/data-api/v3/exchange/market-pairs/latest?slug={slug}&category=spot&start=1&limit=500')
+          #   market_pairs_spot_json = json.loads(market_pairs_spot_request.text)
+            
+          #   if (market_pairs_spot_json['status']['error_message'] == 'SUCCESS'):
+          #     exchange['pairs_spot'] = dict(market_pairs_spot_json.get('data'))
+          #   time.sleep(2.5)
+          
+          #time.sleep(5.0)
+        exchanges_list.append(exchange)
   
   exchanges['exchanges'] = exchanges_list
   return exchanges
@@ -305,25 +321,20 @@ def main():
   if(len(sys.argv) > 1):
     coin_page(sys.argv[1])
 
-  #with open('coins_id_list.txt', 'wb') as f:
-    #  pickle.dump(coins_id_list, f)
-  
-  #exchange_page()
-
-  # try:
-  #   with open('coins.json', 'w') as file: 
-  #     coins = {}
-  #     out_coins = extract_coins(coins)
-  #     file.write(json.dumps(out_coins, indent=4, sort_keys=False))
-  #     #print(json.dumps(out_coins, indent=4, sort_keys=True))
-  # except Exception as error:
-  #   print('error processing coins', error)
+  try:
+    with open('coins.json', 'w') as file: 
+      coins = {}
+      out_coins = extract_coins(coins)
+      file.write(json.dumps(out_coins, indent=4, sort_keys=False))
+      #print(json.dumps(out_coins, indent=4, sort_keys=True))
+  except Exception as error:
+    print('error processing coins', error)
 
   #pp = pprint.PrettyPrinter(indent=4)
   #pp.pprint(out_coins)
   
   try:
-    with open('exchanges1.json', 'w') as file: 
+    with open('exchanges.json', 'w') as file: 
       exchanges = {}
       out_exchanges = extract_exchanges(exchanges)
       file.write(json.dumps(out_exchanges, indent=4, sort_keys=False))

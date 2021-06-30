@@ -1,0 +1,459 @@
+{
+    "cryptomoedas": [
+        {
+            "rank": 0,
+            "name": "Bitcoin",
+            "symbol": "BTC",
+            "id": "1",
+            "original_url": "https://coinmarketcap.com/currencies/bitcoin/",
+            "slug": "bitcoin",
+            "max_supply": "21,000,000",
+            "about": "Bitcoin is a decentralized cryptocurrency originally described in a 2008 whitepaper by a person, or group of people, using the alias Satoshi Nakamoto. It was launched soon after, in January 2009.Bitcoin is a peer-to-peer online currency, meaning that all transactions happen directly between equal, independent network participants, without the need for any intermediary to permit or facilitate them. Bitcoin was created, according to Nakamoto\u2019s own words, to allow \u201conline payments to be sent directly from one party to another without going through a financial institution.\u201dSome concepts for a similar type of a decentralized electronic currency precede BTC, but Bitcoin holds the distinction of being the first-ever cryptocurrency to come into actual use.Bitcoin\u2019s original inventor is known under a pseudonym, Satoshi Nakamoto. As of 2020, the true identity of the person \u2014 or organization \u2014 that is behind the alias remains unknown.On October 31, 2008, Nakamoto published Bitcoin\u2019s whitepaper, which described in detail how a peer-to-peer, online currency could be implemented. They proposed to use a decentralized ledger of transactions packaged in batches (called \u201cblocks\u201d) and secured by cryptographic algorithms \u2014 the whole system would later be dubbed \u201cblockchain.\u201dJust two months later, on January 3, 2009, Nakamoto mined the first block on the Bitcoin network, known as the genesis block, thus launching the world\u2019s first cryptocurrency.However, while Nakamoto was the original inventor of Bitcoin, as well as the author of its very first implementation, over the years a large number of people have contributed to improving the cryptocurrency\u2019s software by patching vulnerabilities and adding new features.Bitcoin\u2019s source code repository on GitHub lists more than 750 contributors, with some of the key ones being Wladimir J. van der Laan, Marco Falke, Pieter Wuille, Gavin Andresen, Jonas Schnelli and others.Bitcoin\u2019s most unique advantage comes from the fact that it was the very first cryptocurrency to appear on the market.It has managed to create a global community and give birth to an entirely new industry of millions of enthusiasts who create, invest in, trade and use Bitcoin and other cryptocurrencies in their everyday lives. The emergence of the first cryptocurrency has created a conceptual and technological basis that subsequently inspired the development of thousands of competing projects.The entire cryptocurrency market \u2014 now worth more than $300 billion \u2014 is based on the idea realized by Bitcoin: money that can be sent and received by anyone, anywhere in the world without reliance on trusted intermediaries, such as banks and financial services companies.Thanks to its pioneering nature, BTC remains at the top of this energetic market after over a decade of existence. Even after Bitcoin has lost its undisputed dominance, it remains the largest cryptocurrency, with a market capitalization that fluctuated between $100-$200 billion in 2020, owing in large part to the ubiquitousness of platforms that provide use-cases for BTC: wallets, exchanges, payment services, online games and more.Looking for market and blockchain data for BTC? Visit our block explorer.Want to buy Bitcoin? Use CoinMarketCap\u2019s guide.Should you buy Bitcoin with PayPal?What is wrapped Bitcoin?Will Bitcoin volatility ever reduce?How to use a Bitcoin ATMBitcoin\u2019s total supply is limited by its software and will never exceed 21,000,000 coins. New coins are created during the process known as \u201cmining\u201d: as transactions are relayed across the network, they get picked up by miners and packaged into blocks, which are in turn protected by complex cryptographic calculations.As compensation for spending their computational resources, the miners receive rewards for every block that they successfully add to the blockchain. At the moment of Bitcoin\u2019s launch, the reward was 50 bitcoins per block: this number gets halved with every 210,000 new blocks mined \u2014 which takes the network roughly four years. As of 2020, the block reward has been halved three times and comprises 6.25 bitcoins.Bitcoin has not been premined, meaning that no coins have been mined and/or distributed between the founders before it became available to the public. However, during the first few years of BTC\u2019s existence, the competition between miners was relatively low, allowing the earliest network participants to accumulate significant amounts of coins via regular mining: Satoshi Nakamoto alone is believed to own over a million Bitcoin.Mining Bitcoins can be very profitable for miners, depending on the current hash rate and the price of Bitcoin. While the process of mining Bitcoins is complex, we discuss how long it takes to mine one Bitcoin on CMC Alexandria \u2014 as we wrote above, mining Bitcoin is best understood as how long it takes to mine one block, as opposed to one Bitcoin.Bitcoin is secured with the SHA-256 algorithm, which belongs to the SHA-2 family of hashing algorithms, which is also used by its fork Bitcoin Cash (BCH), as well as several other cryptocurrencies.Bitcoin is the first decentralized, peer-to-peer digital currency. One of its most important functions is that it is used as a decentralized store of value. In other words, it provides for ownership rights as a physical asset or as a unit of account. However, the latter store-of-value function has been debated. Many crypto enthusiasts and economists believe that high-scale adoption of the top currency will lead us to a new modern financial world where transaction amounts will be denominated in smaller units.The top crypto is considered a store of value, like gold, for many \u2014 rather than a currency. This idea of the first cryptocurrency as a store of value, instead of a payment method, means that many people buy the crypto and hold onto it long-term (or HODL) rather than spending it on items like you would typically spend a dollar \u2014 treating it as digital gold.The most popular wallets for cryptocurrency include both hot and cold wallets. Cryptocurrency wallets vary from hot wallets and cold wallets. Hot wallets are able to be connected to the web, while cold wallets are used for keeping large amounts of coins outside of the internet.Some of the top crypto cold wallets are Trezor, Ledger and CoolBitX. Some of the top crypto hot wallets include Exodus, Electrum and Mycelium.A hard fork is a radical change to the protocol that makes previously invalid blocks/transactions valid, and therefore requires all users to upgrade. For example, if users A and B are disagreeing on whether an incoming transaction is valid, a hard fork could make the transaction valid to users A and B, but not to user C.A hard fork is a protocol upgrade that is not backward compatible. This means every node (computer connected to the Bitcoin network using a client that performs the task of validating and relaying transactions) needs to upgrade before the new blockchain with the hard fork activates and rejects any blocks or transactions from the old blockchain. The old blockchain will continue to exist and will continue to accept transactions, although it may be incompatible with other newer Bitcoin clients.A soft fork is a change to the Bitcoin protocol wherein only previously valid blocks/transactions are made invalid. Since old nodes will recognise the new blocks as valid, a soft fork is backward-compatible. This kind of fork requires only a majority of the miners upgrading to enforce the new rules.Some examples of prominent cryptocurrencies that have undergone hard forks are the following: Bitcoin\u2019s hard fork that resulted in Bitcoin Cash, Ethereum\u2019s hard fork that resulted in Ethereum Classic.https://coinmarketcap.com/alexandria/article/bitcoin-vs-bitcoin-cash-vs-bitcoin-svBitcoin Cash has been hard forked since its original forking, with the creation of Bitcoin SV.The Lightning Network is an off-chain, layered payment protocol that operates bidirectional payment channels which allows instantaneous transfer with instant reconciliation. It enables private, high volume and trustless transactions between any two parties. The Lightning Network scales transaction capacity without incurring the costs associated with transactions and interventions on the underlying blockchain.The current valuation of Bitcoin is constantly moving, all day every day. It is a truly global asset. From a start of under one cent per coin, BTC has risen in price by thousands of percent to the numbers you see above. The prices of all cryptocurrencies are quite volatile, meaning that anyone\u2019s understanding of how much is Bitcoin will change by the minute. However, there are times when different countries and exchanges show different prices and understanding how much is Bitcoin will be a function of a person\u2019s location.Bitcoin is, in many regards, almost synonymous with cryptocurrency, which means that you can buy Bitcoin on virtually every crypto exchange \u2014 both for fiat money and other cryptocurrencies. Some of the main markets where BTC trading is available are:If you are new to crypto, use CoinMarketCap\u2019s own easy guide to buying Bitcoin.",
+            "website": "https://bitcoin.org/",
+            "source_code": "https://github.com/bitcoin/",
+            "whitepaper": "https://bitcoin.org/bitcoin.pdf",
+            "other_links": [
+                "bitcoin.org"
+            ],
+            "explorers": [
+                "blockchain.coinmarketcap.com",
+                "blockchain.info",
+                "live.blockcypher.com",
+                "blockchair.com",
+                "explorer.viabtc.com"
+            ],
+            "community": [
+                "bitcointalk.org",
+                "https://reddit.com/r/bitcoin"
+            ],
+            "consensus_algorithm": [
+                "PoW",
+                "SHA-256"
+            ],
+            "property": [
+                "Store of Value",
+                "State channels",
+                "Coinbase Ventures Portfolio",
+                "Three Arrows Capital Portfolio",
+                "Polychain Capital Portfolio",
+                "Binance Labs Portfolio",
+                "Arrington XRP capital",
+                "Blockchain Capital Portfolio",
+                "BoostVC Portfolio",
+                "CMS Holdings Portfolio",
+                "DCG Portfolio",
+                "DragonFly Capital Portfolio",
+                "Electric Capital Portfolio",
+                "Fabric Ventures Portfolio",
+                "Framework Ventures",
+                "Galaxy Digital Portfolio",
+                "Huobi Capital",
+                "Alameda Research Portfolio",
+                "A16Z Portfolio",
+                "1Confirmation Portfolio",
+                "Winklevoss Capital",
+                "USV Portfolio",
+                "Placeholder Ventures Portfolio",
+                "Pantera Capital Portfolio",
+                "Multicoin Capital Portfolio",
+                "Paradigm XZY Screener"
+            ],
+            "other": [
+                "Mineable"
+            ]
+        },
+        {
+            "rank": 1,
+            "name": "Ethereum",
+            "symbol": "ETH",
+            "id": "1027",
+            "original_url": "https://coinmarketcap.com/currencies/ethereum/",
+            "slug": "ethereum",
+            "max_supply": "--",
+            "about": "Ethereum is a decentralized open-source blockchain system that features its own cryptocurrency, Ether. ETH works as a platform for numerous other cryptocurrencies, as well as for the execution of decentralized smart contracts.Ethereum was first described in a 2013 whitepaper by Vitalik Buterin. Buterin, along with other co-founders, secured funding for the project in an online public crowd sale in the summer of 2014 and officially launched the blockchain on July 30, 2015.Ethereum\u2019s own purported goal is to become a global platform for decentralized applications, allowing users from all over the world to write and run software that is resistant to censorship, downtime and fraud.Ethereum has a total of eight co-founders \u2014 an unusually large number for a crypto project. They first met on June 7, 2014, in Zug, Switzerland.Russian-Canadian Vitalik Buterin is perhaps the best known of the bunch. He authored the original white paper that first described Ethereum in 2013 and still works on improving the platform to this day. Prior to ETH, Buterin co-founded and wrote for the Bitcoin Magazine news website.British programmer Gavin Wood is arguably the second most important co-founder of ETH, as he coded the first technical implementation of Ethereum in the C++ programming language, proposed Ethereum\u2019s native programming language Solidity and was the first chief technology officer of the Ethereum Foundation. Before Ethereum, Wood was a research scientist at Microsoft. Afterward, he moved on to establish the Web3 Foundation.Among the other co-founders of Ethereum are: - Anthony Di Iorio, who underwrote the project during its early stage of development. - Charles Hoskinson, who played the principal role in establishing the Swiss-based Ethereum Foundation and its legal framework. - Mihai Alisie, who provided assistance in establishing the Ethereum Foundation. - Joseph Lubin, a Canadian entrepreneur, who, like Di Iorio, has helped fund Ethereum during its early days, and later founded an incubator for startups based on ETH called ConsenSys. - Amir Chetrit, who helped co-found Ethereum but stepped away from it early into the development.Ethereum has pioneered the concept of a blockchain smart contract platform. Smart contracts are computer programs that automatically execute the actions necessary to fulfill an agreement between several parties on the internet. They were designed to reduce the need for trusted intermediates between contractors, thus reducing transaction costs while also increasing transaction reliability.Ethereum\u2019s principal innovation was designing a platform that allowed it to execute smart contracts using the blockchain, which further reinforces the already existing benefits of smart contract technology. Ethereum\u2019s blockchain was designed, according to co-founder Gavin Wood, as a sort of \u201cone computer for the entire planet,\u201d theoretically able to make any program more robust, censorship-resistant and less prone to fraud by running it on a globally distributed network of public nodes.In addition to smart contracts, Ethereum\u2019s blockchain is able to host other cryptocurrencies, called \u201ctokens,\u201d through the use of its ERC-20 compatibility standard. In fact, this has been the most common use for the ETH platform so far: to date, more than 280,000 ERC-20-compliant tokens have been launched. Over 40 of these make the top-100 cryptocurrencies by market capitalization, for example, USDT, LINK and BNB.New to crypto? Learn how to buy Bitcoin today.Ready to learn more? Visit our learning hub.Want to look up a transaction? Visit our block explorer.Curious about the crypto space? Read our blog!In August 2020, there were around 112 million ETH coins in circulation, 72 million of which were issued in the genesis block \u2014 the first ever block on the Ethereum blockchain. Of these 72 million, 60 million were allocated to the initial contributors to the 2014 crowd sale that funded the project, and 12 million were given to the development fund.The remaining amount has been issued in the form of block rewards to the miners on the Ethereum network. The original reward in 2015 was 5 ETH per block, which later went down to 3 ETH in late 2017 and then to 2 ETH in early 2019. The average time it takes to mine an Ethereum block is around 13-15 seconds.One of the major differences between Bitcoin and Ethereum\u2019s economics is that the latter is not deflationary, i.e. its total supply is not limited. Ethereum\u2019s developers justify this by not wanting to have a \u201cfixed security budget\u201d for the network. Being able to adjust ETH\u2019s issuance rate via consensus allows the network to maintain the minimum issuance needed for adequate security.As of August 2020, Ethereum is secured via the Ethash proof-of-work algorithm, belonging to the Keccak family of hash functions.There are plans, however, to transition the network to a proof-of-stake algorithm tied to the major Ethereum 2.0 update, which launched in late 2020.After the Ethereum 2.0 Beacon Chain (Phase 0) went live in the beginning of December 2020, it became possible to begin staking on the Ethereum 2.0 network. An Ethereum stake is when you deposit ETH (acting as a validator) on Ethereum 2.0 by sending it to a deposit contract, basically acting as a miner and thus securing the network. At the time of writing in mid-December 2020, the Ethereum stake price, or the amount of money earned daily by Ethereum validators, is about 0.00403 ETH a day, or $2.36. This number will change as the network develops and the amount of stakers (validators) increase.Ethereum staking rewards are determined by a distribution curve (the participation and average percent of stakers): some ETH 2.0 staking rewards are at 20% for early stakers, but will be lowered to end up between 7% and 4.5% annually.The minimum requirements for an Ethereum stake are 32 ETH. If you decide to stake in Ethereum 2.0, it means that your Ethererum stake will be locked up on the network for months, if not years, in the future until the Ethereum 2.0 upgrade is completed.Given the fact that Ethereum is the second-largest cryptocurrency after Bitcoin, it is possible to buy Ethereum, or use ETH trading pairs on nearly all of the major crypto exchanges. Some of the largest markets include:",
+            "website": "https://gitter.im/orgs/ethereum/rooms",
+            "source_code": "https://github.com/ethereum",
+            "whitepaper": "https://github.com/ethereum/wiki/wiki/White-Paper",
+            "other_links": [
+                "www.ethereum.org",
+                "en.wikipedia.org/wiki/Et...",
+                "https://gitter.im/orgs/ethereum/rooms"
+            ],
+            "explorers": [
+                "etherscan.io",
+                "ethplorer.io",
+                "blockchair.com",
+                "bscscan.com",
+                "eth.tokenview.com"
+            ],
+            "community": [
+                "bitcointalk.org",
+                "forum.ethereum.org",
+                "ethresear.ch",
+                "https://twitter.com/ethereum",
+                "https://reddit.com/r/ethereum"
+            ],
+            "consensus_algorithm": [
+                "PoW"
+            ],
+            "property": [
+                "Smart Contracts",
+                "Coinbase Ventures Portfolio",
+                "Three Arrows Capital Portfolio",
+                "Polychain Capital Portfolio",
+                "Binance Labs Portfolio",
+                "Arrington XRP capital",
+                "Blockchain Capital Portfolio",
+                "BoostVC Portfolio",
+                "CMS Holdings Portfolio",
+                "DCG Portfolio",
+                "DragonFly Capital Portfolio",
+                "Electric Capital Portfolio",
+                "Fabric Ventures Portfolio",
+                "Framework Ventures",
+                "Hashkey Capital Portfolio",
+                "Kinetic Capital",
+                "Huobi Capital",
+                "Alameda Research Portfolio",
+                "A16Z Portfolio",
+                "1Confirmation Portfolio",
+                "Winklevoss Capital",
+                "USV Portfolio",
+                "Placeholder Ventures Portfolio",
+                "Pantera Capital Portfolio",
+                "Multicoin Capital Portfolio",
+                "Paradigm XZY Screener"
+            ],
+            "platform": [
+                "Ethereum"
+            ],
+            "other": [
+                "Mineable"
+            ]
+        },
+        {
+            "rank": 2,
+            "name": "Tether",
+            "symbol": "USDT",
+            "id": "825",
+            "original_url": "https://coinmarketcap.com/currencies/tether/",
+            "slug": "tether",
+            "max_supply": "--",
+            "about": "USDT is a stablecoin (stable-value cryptocurrency) that mirrors the price of the U.S. dollar, issued by a Hong Kong-based company Tether. The token\u2019s peg to the USD is achieved via maintaining a sum of dollars in reserves that is equal to the number of USDT in circulation.Originally launched in July 2014 as Realcoin, a second-layer cryptocurrency token built on top of Bitcoin\u2019s blockchain through the use of the Omni platform, it was later renamed to USTether, and then, finally, to USDT. In addition to Bitcoin\u2019s, USDT was later updated to work on the Ethereum, EOS, Tron, Algorand, and OMG blockchains.The stated purpose of USDT is to combine the unrestricted nature of cryptocurrencies \u2014 which can be sent between users without a trusted third-party intermediary \u2014 with the stable value of the US dollar.USDT \u2014 or as it was known at the time, Realcoin \u2014 was launched in 2014 by Brock Pierce, Reeve Collins and Craig Sellars.Brock Pierce is a well-known entrepreneur who has co-founded a number of high-profile projects in the crypto and entertainment industries. In 2013, he co-founded a venture capital firm Blockchain Capital, which by 2017 had raised over $80 million in funding. In 2014, Pierce became the director of the Bitcoin Foundation, a nonprofit established to help improve and promote Bitcoin. Pierce has also co-founded Block.one, the company behind EOS, one of the largest cryptocurrencies on the market.Reeve Collins was the CEO of Tether for the first two years of its existence. Prior to that, he had co-founded several successful companies, such as the online ad network Traffic Marketplace, entertainment studio RedLever and gambling website Pala Interactive. As of 2020, Collins is heading SmarMedia Technologies, a marketing and advertising tech company.Other than working on Tether, Craig Sellars has been a member of the Omni Foundation for over six years. Its Omni Protocol allows users to create and trade smart-contract based properties and currencies on top of Bitcoin\u2019s blockchain. Sellars has also worked in several other cryptocurrency companies and organizations, such as Bitfinex, Factom, Synereo and the MaidSafe Foundation.USDT\u2019s unique feature is the fact that its value is guaranteed by Tether to remain pegged to the U.S. dollar. According to Tether, whenever it issues new USDT tokens, it allocates the same amount of USD to its reserves, thus ensuring that USDT is fully backed by cash and cash equivalents.The famously high volatility of the crypto markets means that cryptocurrencies can rise or fall by 10-20% within a single day, making them unreliable as a store of value. USDT, on the other hand, is protected from these fluctuations.This property makes USDT a safe haven for crypto investors: during periods of high volatility, they can park their portfolios in Tether without having to completely cash out into USD. In addition, USDT provides a simple way to transact a U.S. dollar equivalent between regions, countries and even continents via blockchain \u2014 without having to rely on a slow and expensive intermediary, like a bank or a financial services provider.However, over the years, there have been a number of controversies regarding the validity of Tether\u2019s claims about their USD reserves, at times disrupting USDT\u2019s price, which went down as low as $0.88 at one point in its history. Many have raised concerns about the fact that Tether\u2019s reserves have never been fully audited by an independent third party.Looking for market and blockchain data for BTC? Visit our block explorer.Want to buy crypto? Use CoinMarketCap\u2019s guide.There is no hard-coded limit on the total supply of USDT \u2014 given the fact that it belongs to a private company, theoretically, its issuance is limited only by Tether\u2019s own policies. However, because Tether claims that every single USDT is supposed to be backed by one U.S. dollar, the amount of tokens is limited by the company\u2019s actual cash reserves.Moreover, Tether does not disclose its issuance schedules ahead of time. Instead, they provide daily transparency reports, listing the total amount of their asset reserves and liabilities, the latter corresponding to the amount of USDT in circulation.As of September 2020, there are over 14.4 billion USDT tokens in circulation, which are backed by $14.6 billion in assets, according to Tether.USDT does not have its own blockchain \u2014 instead, it operates as a second-layer token on top of other cryptocurrencies\u2019 blockchains: Bitcoin, Ethereum, EOS, Tron, Algorand, Bitcoin Cash and OMG, and is secured by their respective hashing algorithms.It is possible to buy Tether / USDT on a large number of cryptocurrency exchanges. In fact, USDT\u2019s average daily trading volume is often on par or even exceeds that of Bitcoin. It is especially prominent on those exchanges where fiat-to-crypto trading pairs are unavailable, as it provides a viable alternative to USD. Here are some of the most popular exchanges that support Tether trading:",
+            "website": "https://tether.to",
+            "whitepaper": "https://tether.to/wp-content/uploads/2016/06/TetherWhitePaper.pdf",
+            "other_links": [
+                "tether.to",
+                "https://t.me/OfficialTether"
+            ],
+            "explorers": [
+                "www.omniexplorer.info",
+                "etherscan.io",
+                "algoexplorer.io",
+                "tronscan.org",
+                "bscscan.com"
+            ],
+            "community": [
+                "https://twitter.com/tether_to"
+            ],
+            "property": [
+                "Payments",
+                "Stablecoin",
+                "Stablecoin - Asset-Backed",
+                "Solana Ecosystem"
+            ]
+        },
+        {
+            "rank": 3,
+            "name": "Binance Coin",
+            "symbol": "BNB",
+            "id": "1839",
+            "original_url": "https://coinmarketcap.com/currencies/binance-coin/",
+            "slug": "binance-coin",
+            "max_supply": "170,532,785",
+            "about": "Launched in July 2017, Binance is one of the biggest cryptocurrency exchanges globally. By aiming to bring cryptocurrency exchanges to the forefront of financial activity globally. The idea behind Binance\u2019s name is to show this new paradigm in global finance \u2014 Binary Finance, or Binance.Aside from being the largest cryptocurrency exchange globally, Binance has launched a whole ecosystem of functionalities for its users. The Binance network includes the Binance Chain, Academy, Trusted Wallet and Research projects, which all employ the powers of blockchain technology to bring new-age finance to the world. Binance Coin is an integral part of the successful functioning of many of the Binance sub-projects. Changpeng Zhao is the founder and CEO of Binance. In 2001, Zhao joined Bloomberg as head of tradebook futures development. He spent four years with the company and later joined Fusion Systems as a partner. Since 2013, Changpeng Zhao has been actively involved with blockchain technology and cryptocurrencies. He became head of development at Blockchain, and in 2015 he founded BijieTech. In 2017, Zhao officially launched Binance, and he has been the CEO of the company ever since. He Yi is a co-founder and chief marketing officer at Binance. She started her career as a TV anchor and presenter on China Travel TV in 2012. Later, in 2014, Yi co-founded OKCoin, which was the largest fiat-to-crypto exchange in China at the time. In 2017, she joined forces with Changpeng Zhao, and together they created the largest crypto exchange globally \u2014 Binance. Binance is a unique ecosystem of decentralized, blockchain-based networks. The company has grown to be the leading crypto exchange in a number of countries, and their side organizations are attracting significant interest as well. One of the biggest competitive advantages Binance has is its drive for development. While the company started only as a crypto exchange back in 2017, today, Binance has spread its services among numerous different spheres. According to the company website, its mission is to become the infrastructure services provider for the entire blockchain ecosystem.Since launching the Binance Coin, the exchange has also benefited from increased investor interest in the token. BNB went through a significant price increase at the beginning of 2021, which has put it on the map of enterprise investors.Read more about Elrond.Find out more about bZx protocol.Learn more about DApps.Binance is launching an NFT marketplace.What are crypto debit cards?There is a maximum supply of 170,532,785 BNB coins, of which 153,432,897 are currently in circulation as of April 2021. According to the Binance whitepaper, exactly half of the maximum supply of BNB tokens was allocated towards the initial coin offering (ICO) and public sale of the token. Another 40% of the total supply, or around 80,000,000 BNB coins, was distributed among the founding members and team. Finally, the remaining 10% of the maximum supply was split among angel investors. Initially, the Binance coin started as a traditional ERC-20 token on the Ethereum blockchain. Later on, the company introduced its own blockchain, and the coins started being issued from the Binance blockchain, secured by the Tendermint byzantine-fault-tolerant (BFT) consensus mechanism.While ERC-20 tokens rely on the proof-of-stake (PoS) consensus, which allows them to be extremely scalable, and allows for the creation of smart contracts. Unlike PoS, the Binance blockchain does not support smart contract functionalities. In contrast, the Bitcoin blockchain is secured by the proof-of-work (PoW) consensus, which is far more limited and consumes large amounts of electrical and computing power. As the dedicated utility token of the Binance exchange, the most straightforward way to acquire BNB coins would be to purchase them through Binance. The original exchange supports the largest variety of trading pairs with BNB, and it also has the best trading rates for the coin. If you are looking for alternative exchanges where you can purchase BNB, FTX is a good choice. Keep in mind that investing in cryptocurrency can be risky, just like investing in any other type of asset. Find more information here about buying cryptos.",
+            "website": "https://www.binance.com/",
+            "other_links": [
+                "www.binance.com",
+                "https://t.me/binanceexchange"
+            ],
+            "explorers": [
+                "explorer.binance.org",
+                "etherscan.io",
+                "bscscan.com",
+                "blockchair.com"
+            ],
+            "community": [
+                "https://twitter.com/binance",
+                "https://reddit.com/r/binance"
+            ],
+            "property": [
+                "Marketplace",
+                "Centralized exchange",
+                "Payments",
+                "Binance Smart Chain",
+                "Alameda Research Portfolio",
+                "Multicoin Capital Portfolio"
+            ]
+        },
+        {
+            "rank": 4,
+            "name": "Cardano",
+            "symbol": "ADA",
+            "id": "2010",
+            "original_url": "https://coinmarketcap.com/currencies/cardano/",
+            "slug": "cardano",
+            "max_supply": "45,000,000,000",
+            "about": "Cardano is a proof-of-stake blockchain platform that says its goal is to allow \u201cchangemakers, innovators and visionaries\u201d to bring about positive global change.The open-source project also aims to \u201credistribute power from unaccountable structures to the margins to individuals\u201d \u2014 helping to create a society that is more secure, transparent and fair.Cardano was founded back in 2017, and the ADA token is designed to ensure that owners can participate in the operation of the network. Because of this, those who hold the cryptocurrency have the right to vote on any proposed changes to the software.The team behind the layered blockchain say that there have already been some compelling use cases for its technology, which aims to allow decentralized apps and smart contracts to be developed with modularity.Cardano is used by agricultural companies to track fresh produce from field to fork, while other products built on the platform allow educational credentials to be stored in a tamper-proof way, and retailers to clamp down on counterfeit goods.Cardano was founded by Charles Hoskinson, who was also one of the co-founders of the Ethereum network. He is the CEO of IOHK, the company that built Cardano\u2019s blockchain.In an interview for CoinMarketCap\u2019s Crypto Titans series, Hoskinson said that he got involved in cryptocurrencies back in 2011 \u2014 and dabbled in mining and trading. He explained that his first professional involvement in the industry came in 2013, when he created a course about Bitcoin that ended up being taken by 80,000 students.As well as being a technology entrepreneur, Hoskinson is also a mathematician. In 2020, his technology company donated ADA worth $500,000 to the University of Wyoming\u2019s Blockchain Research and Development Lab.Cardano is one of the biggest blockchains to successfully use a proof-of-stake consensus mechanism, which is less energy intensive than the proof-of-work algorithm relied upon by Bitcoin. Although the much larger Ethereum is going to be upgrading to PoS, this transition is only going to take place gradually.The project has taken pride in ensuring that all of the technology developed goes through a process of peer-reviewed research, meaning that bold ideas can be challenged before they are validated. According to the Cardano team, this academic rigor helps the blockchain to be durable and stable \u2014 increasing the chance that potential pitfalls can be anticipated in advance.In 2020, Cardano held a Shelley upgrade that aimed to make its blockchain \u201c50 to 100 times more decentralized\u201d than other large blockchains. At the time, Hoskinson predicted that this would pave the way for hundreds of assets to run on its network.Related Pages:Read our interview with Cardano founder Charles HoskinsonA deep dive into the technology behind Ethereum 2.0Brush up on complicated crypto terms with our glossaryCheck out our other interviews with crypto heavyweights A Deep Dive Into CardanoRead our crypto staking guideThere is a maximum supply of 45 billion ADA \u2014 but at the time of writing, there was a circulating supply of about 31 billion. Five rounds of public sales of Cardano tokens were held between September 2015 and January 2017.Approximately 2.5 billion ADA was allotted to IOHK once the network launched. Meanwhile, an additional 2.1 billion ADA was given to Emurgo, a global blockchain technology company that served as a founding entity of the Cardano protocol. Last but not least, 648 million ADA was given to the not-for-profit Cardano Foundation, which aims to promote the platform and increase levels of adoption.Overall, about 16% of ADA\u2019s total supply went to the project\u2019s founders, with the remaining 84% being split among investors.Cardano is secured through an \u201cenvironmentally sustainable, verifiably secure\u201d PoS protocol that\u2019s known as Ouroboros.The project says that Ouroboros improves upon the security guarantees that are delivered by a PoW consensus mechanism while using substantially less power \u2014 claiming that it is four times more energy efficient than Bitcoin.It is described as a blend of unique technology and mathematically verified mechanisms, with behavioral psychology and economic philosophy thrown in for good measure. Overall, the objective of Ouroboros is to achieve sustainable and ethical growth.An incentive mechanism means that participants in the network are rewarded for their involvement.As one of the biggest cryptocurrencies in the world in terms of market capitalization, you shouldn\u2019t have much difficulty in finding a major exchange to buy Cardano on including Binance, Bittrex, eToro, and HitBTC.If you\u2019re struggling to find a trading pair that unites ADA with your local currency, check out this guide on how to convert fiat into Bitcoin \u2014 giving you a gateway to buying altcoins.\"",
+            "website": "https://www.cardano.org",
+            "source_code": "https://cardanoupdates.com/",
+            "whitepaper": "https://docs.cardano.org/en/latest/",
+            "other_links": [
+                "www.cardano.org",
+                "https://t.me/Cardano"
+            ],
+            "explorers": [
+                "explorer.cardano.org",
+                "cardanoscan.io",
+                "blockchair.com",
+                "bscscan.com",
+                "ada.tokenview.com"
+            ],
+            "community": [
+                "t.me",
+                "medium.com",
+                "forum.cardano.org",
+                "https://twitter.com/cardano",
+                "https://reddit.com/r/cardano"
+            ],
+            "consensus_algorithm": [
+                "DPoS",
+                "PoS"
+            ],
+            "property": [
+                "Platform",
+                "Research",
+                "Smart Contracts",
+                "Staking"
+            ],
+            "platform": [
+                "Binance Chain"
+            ],
+            "other": [
+                "Mineable"
+            ],
+            "self_reported_tags": [
+                "Communications & Social Media"
+            ]
+        },
+        {
+            "rank": 5,
+            "name": "Dogecoin",
+            "symbol": "DOGE",
+            "id": "74",
+            "original_url": "https://coinmarketcap.com/currencies/dogecoin/",
+            "slug": "dogecoin",
+            "max_supply": "--",
+            "about": "Dogecoin (DOGE) is based on the popular \"doge\" Internet meme and features a Shiba Inu on its logo. The open-source digital currency was created by Billy Markus from Portland, Oregon and Jackson Palmer from Sydney, Australia, and was forked from Litecoin in December 2013. Dogecoin's creators envisaged it as a fun, light-hearted cryptocurrency that would have greater appeal beyond the core Bitcoin audience, since it was based on a dog meme. Tesla CEO Elon Musk posted several tweets on social media that Dogecoin is his favorite coin.Dogecoin differs from Bitcoin's proof-of-work protocol in several ways, one of which is by using Scrypt technology. The altcoin has also a block time of 1 minute, and the total supply is uncapped, which means that there is no limit to the number of Dogecoin that can be mined.\nYou can mine Dogecoin either solo, or by joining a mining pool. A Doge miner can mine the digital currency on Windows, Mac or Linux, and with a GPU. As of 2014, you can also mine Litecoin in the same process of mining Dogecoin, as the processes were merged.Dogecoin has been used primarily as a tipping system on Reddit and Twitter to reward the creation or sharing of quality content. You can get tipped Dogecoin by participating in a community that uses the digital currency, or you can get your Dogecoin from a Dogecoin faucet. A Dogecoin faucet is a website that will give you a small amount of Dogecoin for free as an introduction to the currency, so that you can begin interacting in Dogecoin communities.You can sell or buy Dogecoin at any exchange that offers the digital currency, store it on an exchange or in a Dogecoin wallet, and tip Dogecoin in any communities that accept Dogecoin. For the latest list of exchanges and trading pairs for this cryptocurrency, click on our market pairs tab.",
+            "website": "http://dogecoin.com/",
+            "source_code": "https://github.com/dogecoin/dogecoin",
+            "whitepaper": "https://github.com/dogecoin/dogecoin/blob/master/README.md",
+            "other_links": [
+                "dogecoin.com",
+                "http://webchat.freenode.net/?nick=Shibe..&channels=%23dogecoin&prompt=1"
+            ],
+            "explorers": [
+                "blockchair.com",
+                "dogechain.info",
+                "doge.tokenview.com",
+                "explorer.viabtc.com",
+                "bscscan.com"
+            ],
+            "community": [
+                "bitcointalk.org",
+                "https://twitter.com/dogecoin",
+                "https://reddit.com/r/dogecoin"
+            ],
+            "consensus_algorithm": [
+                "PoW",
+                "Scrypt"
+            ],
+            "property": [
+                "Medium of Exchange",
+                "Memes",
+                "Payments",
+                "Doggone Doggerel"
+            ],
+            "other": [
+                "Mineable"
+            ]
+        },
+        {
+            "rank": 6,
+            "name": "XRP",
+            "symbol": "XRP",
+            "id": "52",
+            "original_url": "https://coinmarketcap.com/currencies/xrp/",
+            "slug": "xrp",
+            "max_supply": "100,000,000,000",
+            "about": "To begin with, it\u2019s important to understand the difference between XRP, Ripple and RippleNet. XRP is the currency that runs on a digital payment platform called RippleNet, which is on top of a distributed ledger database called XRP Ledger. While RippleNet is run by a company called Ripple, the XRP Ledger is open-source and is not based on blockchain, but rather the previously mentioned distributed ledger database.The RippleNet payment platform is a real-time gross settlement (RTGS) system that aims to enable instant monetary transactions globally. While XRP is the cryptocurrency native to the XRP Ledger, you can actually use any currency to transact on the platform.While the idea behind the Ripple payment platform was first voiced in 2004 by Ryan Fugger, it wasn\u2019t until Jed McCaleb and Chris Larson took over the project in 2012 that Ripple began to be built (at the time, it was also called OpenCoin). XRP was created by Ripple to be a speedy, less costly and more scalable alternative to both other digital assets and existing monetary payment platforms like SWIFT. RippleNet\u2019s ledger is maintained by the global XRP Community, with Ripple the company as an active member. The XRP Ledger processes transactions roughly every 3-5 seconds, or whenever independent validator nodes come to a consensus on both the order and validity of XRP transactions \u2014 as opposed to proof-of-work mining like Bitcoin (BTC). Anyone can be a Ripple validator, and the list is currently made up of Ripple along with universities, financial institutions and others.You can buy XRP on any exchange that offers the digital currency. For the latest list of exchanges and trading pairs for this cryptocurrency, click on our market pairs tab. Remember to do your own research before choosing an exchange!You can either store your XRP on an exchange, where the exchange is responsible for the safety of your asset, or store your XRP in a cold or hot wallet.",
+            "website": "https://xrpl.org/",
+            "source_code": "https://github.com/ripple",
+            "whitepaper": "https://ripple.com/files/ripple_consensus_whitepaper.pdf",
+            "other_links": [
+                "xrpl.org",
+                "https://t.me/Ripple"
+            ],
+            "explorers": [
+                "xrpcharts.ripple.com",
+                "bithomp.com",
+                "xrpscan.com",
+                "blockchair.com",
+                "bscscan.com"
+            ],
+            "community": [
+                "www.xrpchat.com",
+                "https://twitter.com/Ripple",
+                "https://reddit.com/r/ripple"
+            ],
+            "property": [
+                "Medium of Exchange",
+                "Enterprise solutions",
+                "Arrington XRP capital",
+                "Galaxy Digital Portfolio",
+                "A16Z Portfolio",
+                "Pantera Capital Portfolio"
+            ],
+            "platform": [
+                "Binance Chain"
+            ]
+        },
+        {
+            "rank": 7,
+            "name": "USD Coin",
+            "symbol": "USDC",
+            "id": "3408",
+            "original_url": "https://coinmarketcap.com/currencies/usd-coin/",
+            "slug": "usd-coin",
+            "max_supply": "--",
+            "about": " USD Coin (known by its ticker USDC) is a stablecoin that is pegged to the U.S. dollar on a 1:1 basis. Every unit of this cryptocurrency in circulation is backed up by $1 that is held in reserve, in a mix of cash and short-term U.S. Treasury bonds. The Centre consortium, which is behind this asset, says USDC is issued by regulated financial institutions.The stablecoin originally launched on a limited basis in September 2018. Put simply, USD Coin\u2019s mantra is \u201cdigital money for the digital age\u201d \u2014 and the stablecoin is designed for a world where cashless transactions are becoming more common.Several use cases have been unveiled for the USD Coin. As well as providing a safe haven for crypto traders in times of volatility, those behind the stablecoin say it can also allow businesses to accept payments in digital assets, and shake up an array of sectors including decentralized finance and gaming.Overall, the goal is to create an ecosystem where USDC is accepted by as many wallets, exchanges, service providers and dApps as possible.The Centre Consortium has two founding members. One of them is the peer-to-peer payment services company Circle, while the other is the Coinbase cryptocurrency exchange. Other crypto ventures are open to join this consortium.Explaining the rationale behind USDC, Circle co-founders Jeremy Allaire and Sean Neville wrote: \u201cWe believe that an open internet of value exchange can transform and integrate the world more deeply, eventually eliminating artificial economic borders and enabling a more efficient and inclusive global marketplace that connects every person on the planet.\u201dIn 2020, Circle and Coinbase collectively announced a major upgrade to USDC\u2019s protocol and smart contract. The goal of these enhancements is to make it easier for USD Coin to be used for everyday payments, commerce and peer-to-peer transactions.The stablecoin market has become exceedingly crowded over recent years \u2014 but USD Coin has aimed to stand head and shoulders over competitors in several ways.One of them concerns transparency \u2014 and giving users the assurance that they will be able to withdraw 1 USDC and receive $1 in return without any issues. To this end, it says a major accounting firm is tasked with verifying the levels of cash that are held in reserve, and ensuring this matches up with the number of tokens in circulation.Unlike some crypto ventures, Circle and Coinbase have also achieved regulatory compliance \u2014 and this has helped pave the way for international expansion. Both projects are also well-funded, giving the stablecoin certainty.Related Pages:What is a stablecoin?Find out about USDT, one of USDC\u2019s biggest competitorsDetailed definitions for stablecoins in the CoinMarketCap glossaryCoinMarketCap Blog: Insightful analysis and featuresIt\u2019s a bit difficult to give an exact number here \u2014 as in theory, the number of USDC that can exist is limitless. New coins are created in line with demand, whenever someone wants to purchase one with their humble dollar.That said, there have been factors that have helped USD Coin enjoy an explosion in popularity over the years \u2014 especially in 2020. One of them is the sudden, sharp rise in the popularity of decentralized finance. USDC is a common sight on many DeFi protocols given how it serves as an onramp to the wider ecosystem.All of the USDCs in circulation are actually ERC-20 tokens, which can be found on the Ethereum blockchain. One of the biggest advantages here is how it can then be integrated with Ethereum-based applications. As we mentioned earlier, security and confidence in this stablecoin is delivered by proving that U.S. dollars are being held safely in reserve.As you might expect, one of the most enthusiastic exchanges that offers USDC is Coinbase, given how the exchange was involved in this stablecoin\u2019s creation. USD Coin can also be purchased and traded on Poloniex, Binance, OKEx and Bitfinex, as well as decentralized exchanges such as Uniswap.USDC is commonly bought with Bitcoin \u2014 and if it\u2019s your first time buying Bitcoin, be sure to check out our comprehensive guide here.",
+            "website": "https://www.centre.io/usdc",
+            "source_code": "https://github.com/centrehq/centre-tokens",
+            "whitepaper": "https://f.hubspotusercontent30.net/hubfs/9304636/PDF/centre-whitepaper.pdf",
+            "other_links": [
+                "www.centre.io/usdc"
+            ],
+            "explorers": [
+                "etherscan.io",
+                "explorer.solana.com",
+                "algoexplorer.io",
+                "bscscan.com",
+                "ftmscan.com"
+            ],
+            "community": [
+                "blog.circle.com",
+                "medium.com"
+            ],
+            "property": [
+                "Medium of Exchange",
+                "Stablecoin",
+                "Stablecoin - Asset-Backed"
+            ]
+        },
+        {
+            "rank": 8,
+            "name": "Polkadot",
+            "symbol": "DOT",
+            "id": "6636",
+            "original_url": "https://coinmarketcap.com/currencies/polkadot-new/",
+            "slug": "polkadot-new",
+            "max_supply": "--",
+            "about": "",
+            "website": "https://polkadot.network/",
+            "source_code": "https://github.com/w3f",
+            "other_links": [
+                "polkadot.network",
+                "https://t.me/PolkadotOfficial"
+            ],
+            "explorers": [
+                "polkascan.io",
+                "polkadot-cc1.subscan.io",
+                "polkastats.io",
+                "hubble.figment.io",
+                "bscscan.com"
+            ],
+            "community": [
+                "medium.com",
+                "https://twitter.com/Polkadot",
+                "https://reddit.com/r/dot"
+            ],
+            "property": [
+                "Substrate",
+                "Polkadot Ecosystem",
+                "Three Arrows Capital Portfolio",
+                "Polychain Capital Portfolio",
+                "Blockchain Capital Portfolio",
+                "BoostVC Portfolio",
+                "CMS Holdings Portfolio",
+                "Coinfund Portfolio",
+                "Fabric Ventures Portfolio",
+                "Fenbushi Capital Portfolio",
+                "Hashkey Capital Portfolio",
+                "Kinetic Capital",
+                "1Confirmation Portfolio",
+                "Placeholder Ventures Portfolio",
+                "Pantera Capital Portfolio",
+                "Exnetwork Capital Portfolio"
+            ],
+            "platform": [
+                "Polkadot",
+                "Binance Chain"
+            ]
+        },
+        {
+            "rank": 9,
+            "name": "Uniswap",
+            "symbol": "UNI",
+            "id": "7083",
+            "original_url": "https://coinmarketcap.com/currencies/uniswap/",
+            "slug": "uniswap",
+            "max_supply": "1,000,000,000",
+            "about": "Uniswap is a popular decentralized trading protocol, known for its role in facilitating automated trading of decentralized finance (DeFi) tokens.An example of an automated market maker (AMM), Uniswap launched in November 2018, but has gained considerable popularity this year thanks to the DeFi phenomenon and associated surge in token trading.Uniswap aims to keep token trading automated and completely open to anyone who holds tokens, while improving the efficiency of trading versus that on traditional exchanges.Uniswap creates more efficiency by solving liquidity issues with automated solutions, avoiding the problems which plagued the first decentralized exchanges.In September 2020, Uniswap went a step further by creating and awarding its own governance token, UNI, to past users of the protocol. This added both profitability potential and the ability for users to shape its future \u2014 an attractive aspect of decentralized entities.Uniswap came about as a plan to introduce AMMs on Ethereum to a wider audience. The platform\u2019s creator is Ethereum developer Hayden Adams.Adams worked in various projects while finalizing Uniswap, and his work was informed directly by Ethereum creator Vitalik Buterin. Buterin even ended up giving the protocol its name \u2014 it was originally known as Unipeg.Adams has also said that the original inspiration for the Uniswap platform came from one of Buterin\u2019s own blog posts. His original idea to focus on Ethereum came after a friend convinced him to begin researching and understanding the protocol in 2017.Uniswap exists to create liquidity \u2014 and therefore trading and the value that trading provides \u2014\u00a0for the DeFi sphere.One of the major AMMs in operation at present, the protocol functions using a formula for automated exchange \u2014 X x Y = K. Founder Hayden Adams describes himself as the inventor of the particular implementation of the formula on Uniswap.Uniswap is not just a decentralized exchange; it attempts to solve the issues that platforms such as EtherDelta experienced with liquidity. By automating the process of market making, the protocol inceventizes activity by limiting risk and reducing costs for all parties. The mechanism also removes identity requirements for users, and technically anyone can create a liquidity pool for any pair of tokens.According to Uniswap, their governance token (UNI) was created in order to \u201cofficially enshrin[e] Uniswap as publicly-owned and self-sustainable infrastructure while continuing to carefully protect its indestructible and autonomous qualities.\u201dLearn more about Balancer here.Learn more about Curve here.New to DeFi and cryptocurrency? Check out our education resources here.Uniswap vs PancakeswapThe total supply of Uniswap\u2019s governance token, UNI, is 1 billion units. These will become available over the course of four years, after which Uniswap will introduce a \u201cperpetual inflation rate\u201d of 2% to maintain network participation. Token distribution currently consists of the following: 60% to Uniswap community members, i.e. users, 21.51% to team members, 17.8% to investors and 0.69% to advisors. The latter three distributions will occur according to a four-year vesting schedule.Out of the majority set to go to users, 15% can be claimed by those who used Uniswap prior to Sep. 1, 2020. These even include users who submitted transactions which were never successful \u2014 they are eligible for 400 UNI.Uniswap is a decentralized protocol for trading, and UNI is its in-house governance token. UNI is an ERC-20 token, meaning it requires Ethereum to function. ERC-20 merely defines a set of rules for tokens, as well as security considerations mainly related to the strength of the Ethereum network. For example, congestion can hike the price of gas needed to perform transactions, leading to delays and abnormally high transaction fees, which impact all participants.Separately, smart contracts can cause security issues that could lead to DeFi traders losing funds; in fact, hackers have already succeeded in stealing millions of dollars in DeFi\u2019s short lifetime as of fall 2020.Uniswap\u2019s UNI governance token is available for trading on major exchanges against other cryptocurrencies, stablecoins, fiat currencies and more. These include Binance, OKEx and Coinbase Pro, along with, naturally, Uniswap\u2019s protocol itself.You can read more about how to enter the cryptocurrency market, no matter what token you plan to purchase, here.",
+            "website": "https://discord.gg/FCfyBSbCU5",
+            "other_links": [
+                "uniswap.org/blog/uni/",
+                "uniswap.org",
+                "https://discord.gg/FCfyBSbCU5"
+            ],
+            "explorers": [
+                "etherscan.io",
+                "ethplorer.io",
+                "bscscan.com",
+                "hecoinfo.com",
+                "blockscout.com"
+            ],
+            "community": [
+                "uniswap.org",
+                "https://twitter.com/Uniswap",
+                "https://reddit.com/r/Uniswap"
+            ],
+            "property": [
+                "Decentralized exchange",
+                "DeFi",
+                "DAO",
+                "Yield farming",
+                "AMM",
+                "Coinbase Ventures Portfolio",
+                "Three Arrows Capital Portfolio",
+                "Governance",
+                "Blockchain Capital Portfolio",
+                "DeFiance Capital",
+                "Alameda Research Portfolio",
+                "A16Z Portfolio",
+                "Pantera Capital Portfolio",
+                "ParaFi capital",
+                "Paradigm XZY Screener"
+            ]
+        }
+    ]
+}
