@@ -1,5 +1,6 @@
 <template>
   <v-app
+    clipped-left
     id="app"
     :style="{ background: $vuetify.theme.themes[theme].background }"
   >
@@ -57,9 +58,6 @@
           <v-tab href="/outros">Outros</v-tab>
         </v-tabs>
       </template>
-
-      <v-btn> Exchanges </v-btn>
-
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>

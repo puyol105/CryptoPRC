@@ -49,7 +49,7 @@ router.get('/', function(req, res){
 // });
 
 router.get('/:id', function(req, res){
-  Coins.listCoin(req.params.id)
+  Coins.getCoin(req.params.id)
     .then( dados => res.json(dados))
     .catch( e => res.status(500).send(`Error listing Coins ${req.params.id} ${e}`))
 });

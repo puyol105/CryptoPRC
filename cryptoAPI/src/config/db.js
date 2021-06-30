@@ -15,11 +15,15 @@ const getLink = `http://localhost:7200/repositories/cryptomoedas?query=`;
 function toJS(response) {
   let list = [];
   const { vars } = response.head;
+
   list = response.results.bindings.map((e) => {
     const object = {};
-    vars.forEach((i) => object[i] = e[i].value);
+    vars.forEach((i) => {
+      e[i] ? object[i] = e[i].value : false;
+    });
     return object;
   });
+
   return list;
 }
 
@@ -27,6 +31,7 @@ module.exports.query = async (query) => {
   const encoded = encodeURIComponent(prefixes + query);
   try {
     const result = await axios.get(getLink + encoded);
+
     return toJS(result.data);
   } catch (err) {
     // eslint-disable-next-line no-undef

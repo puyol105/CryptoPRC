@@ -2,30 +2,32 @@ var TradingPairs = module.exports;
 
 const db = require('../config/db');
 
-TradingPairs.listTradingPairs = async function () {
+TradingPairs.getTradingPair = async function (slug,type) {
   try {
     const result = await db.query(
-      `select ?trading_pair ?market_url where { 
-        ?trading_pair a :TradingPair ;
-                      :market_url ?market_url .
-      } limit 100`);
-    
-    return result;
-  
-  } catch (e) {
-      throw e;
-  }
-};
-
-TradingPairs.listTradingPair = async function (id) {
-  try {
-    const result = await db.query(
-      `select ?trading_pair ?market_url ?market_id where { 
-        ?trading_pair a :TradingPair ;
-                      :market_url ?market_url ;
-                :market_id ?market_id .
-        filter( ?market_id = ${id})
-      } limit 100`);
+      `select * where{
+        ?tp a :TradingPair.
+        ?tp a :${type}.
+        ?tp :market_url ?url.
+        ?tp :market_id ?id.
+        ?tp :éNegociado ?exchange.
+        ?tp :temParCoinSell ?coinSell.
+        optional{
+            ?coinSell :slug ?slugSell.
+        }
+        optional{
+          ?coinSell :symbol ?symbolSell.
+        }
+        optional{
+          ?coinSell :name ?nameSell.
+        }
+        optional{
+            ?coinSell :id ?idSell.
+        }
+        ?coin :éParBuy|:éParSell ?tp.
+        ?coin :slug ?slugBuy.
+        filter(?slugBuy='${slug}')
+    } `);
     
     return result;
   
