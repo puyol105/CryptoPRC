@@ -118,7 +118,7 @@ def exchange_price():
 @app.route('/marketPairPrice', methods = ['GET'])
 def market_pair_price():
   
-  if (req_query_id := request.args.getlist("id")) is None:
+  if (req_query_id := request.args.getlist("slug")) is None:
     abort(404, description="No request query id provided")
   query_id_string = list_to_query_string(req_query_id)
 
@@ -133,7 +133,7 @@ def market_pair_price():
   print('req_query_id', req_query_id, 'req_query_category', req_query_category, 'req_query_market', req_query_market)
   print('query_id_string', query_id_string, 'query_category_string', 'query_market_string', query_market_string)
   
-  url = f'https://api.coinmarketcap.com/data-api/v3/cryptocurrency/market-pairs/latest?id={query_id_string}&start=1&limit=700&category={query_category_string}&sort=cmc_rank_advanced'
+  url = f'https://api.coinmarketcap.com/data-api/v3/cryptocurrency/market-pairs/latest?slug={query_id_string}&start=1&limit=700&category={query_category_string}&sort=cmc_rank_advanced'
   print('url', url)
   r_market_pair = requests.get(url)
 

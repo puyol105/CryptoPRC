@@ -48,10 +48,10 @@ router.get('/', function(req, res){
 //     .catch( e => res.status(500).send(`Error listing Coins ${e}`))
 // });
 
-router.get('/:id', function(req, res){
-  Coins.getCoin(req.params.id)
+router.get('/:slug', function(req, res){
+  Coins.getCoin(req.params.slug)
     .then( dados => res.json(dados))
-    .catch( e => res.status(500).send(`Error listing Coins ${req.params.id} ${e}`))
+    .catch( e => res.status(500).send(`Error listing Coins ${req.params.slug} ${e}`))
 });
 
 

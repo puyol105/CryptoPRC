@@ -8,9 +8,10 @@ TradingPairs.getTradingPair = async function (slug,type) {
       `select * where{
         ?tp a :TradingPair.
         ?tp a :${type}.
-        ?tp :market_url ?url.
-        ?tp :market_id ?id.
+        ?tp :market_url ?marketurl.
+        ?tp :market_id ?marketid.
         ?tp :éNegociado ?exchange.
+        ?exchange :name ?exchangeName.
         ?tp :temParCoinSell ?coinSell.
         optional{
             ?coinSell :slug ?slugSell.

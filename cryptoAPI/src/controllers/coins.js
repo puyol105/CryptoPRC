@@ -47,9 +47,8 @@ Coins.listCoin2 = async function (id) {
   }
 };
 
-Coins.getCoin = async function (id) {
+Coins.getCoin = async function (slug) {
   try {
-    console.log('ENTROU')
     const result = await db.query(`
 select  ?id ?rank (group_concat(distinct ?explorers; separator = ';') as ?explorers) (group_concat(distinct ?community; separator = ';') as ?community) ?mineable ?max_supply ?about ?name ?original_url (group_concat(distinct ?other_links; separator = ';') as ?other_links) ?slug ?source_code ?symbol ?website ?whitepaper (group_concat(distinct ?nome; separator = ';') as ?nome) (group_concat(distinct ?nomecat; separator = ';') as ?nomecat) (group_concat(distinct ?nomeins; separator = ';') as ?nomeins) ?nomeplat where{
     ?coin a :Coin.
@@ -112,14 +111,14 @@ select  ?id ?rank (group_concat(distinct ?explorers; separator = ';') as ?explor
     optional{
         ?coin :about ?about.
     }
-    filter(?id=1)
+    filter(?slug='${slug}')
 } group by ?id ?rank ?mineable ?max_supply ?name ?about ?original_url ?slug ?source_code ?symbol ?website ?whitepaper ?nomeplat
 
     `);
     console.log(result)
     return result;
-  
-  } catch (e) {
+  } 
+  catch (e) {
       throw e;
   }
 };
