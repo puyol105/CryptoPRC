@@ -1,7 +1,8 @@
 <template>
   <div>
 
-      <v-tabs>
+      <v-tabs background-color="background"
+      center-active centered>
         <v-tab @click="getPairs('Spot', slug)">Spot</v-tab>
         <v-tab @click="getPairs('Perpetual', slug)">Perpetual</v-tab>
         <v-tab @click="getPairs('Futures', slug)">Futures</v-tab>
