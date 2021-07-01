@@ -1,5 +1,12 @@
 <template>
   <div>
+
+      <v-tabs>
+        <v-tab @click="getPairs('Spot', slug)">Spot</v-tab>
+        <v-tab @click="getPairs('Perpetual', slug)">Perpetual</v-tab>
+        <v-tab @click="getPairs('Futures', slug)">Futures</v-tab>
+      </v-tabs>
+      
     <v-data-table 
       class="transparent" 
       :headers="headers1" 
@@ -13,6 +20,7 @@
       @onclick="cenas()"
       
     >
+
       <!-- <template v-slot:item.id="{ item }">
             <div class="p-2">
               <v-img 
@@ -24,57 +32,188 @@
               </v-img>
             </div>
           </template> -->
+      
       <template v-slot:item.exchange="{ item }">
-        <span> {{ item.prices.exchangeName }}
+        <a :href="`/exchange/${item.prices.exchangeSlug}`"> {{ item.prices.exchangeName }}
           
-        </span>
+        </a>
       </template>
-      <!-- <template v-slot:item.pricesP="{ item }">
+
+       <template v-slot:item.pairs="{ item }">
+          <!-- <a :href="`/coin/${item.slug}`"> {{ item.name }} ( {{ item.symbol }} ) -->
+          <a :href="`/coin/${item.slugBuy}`"> {{ item.nameBuy }}  </a>
+          <a :href="`${item.marketurl}`">   ( {{ item.prices.marketPair }} )   </a>
+          <a :href="`/coin/${item.slugSell}`">  {{ item.nameSell }} </a>
+
+        <!-- <span
+          >{{item.prices.baseSymbol}}/{{item.prices.quoteSymbol}}</span
+        > -->
+      </template>
+
+      <template v-slot:item.prices="{ item }">
         <span
-          >$
-          {{ parseFloat(item.prices.price.toFixed(2)).toLocaleString() }}</span
+          > $ {{
+            parseFloat(
+              item.prices.price.toFixed(2)
+            ).toLocaleString()
+          }}
+          </span
         >
       </template>
-      <template v-slot:item.prices24="{ item }">
+       
+      <template v-slot:item.depthpositive="{ item }">  
+        <td v-if="item.prices.depthUsdPositiveTwo">
+          ${{
+            parseFloat(item.prices.depthUsdPositiveTwo.toFixed(0)).toLocaleString()
+          }}
+        </td>
+        <td v-else> - </td>
+        <!-- <span
+          >{{
+            parseFloat(
+              item.prices.depthUsdPositiveTwo.toFixed(0)
+            ).toLocaleString()
+          }}
+          %</span> -->
+      </template> 
+      
+      <template v-slot:item.depthnegative="{ item }">  
+        <td v-if="item.prices.depthUsdNegativeTwo">
+          ${{
+            parseFloat(item.prices.depthUsdNegativeTwo.toFixed(0)).toLocaleString()
+          }}
+        </td>
+        <td v-else> - </td>
+      </template>
+
+      <template v-slot:item.volume="{ item }">
+        <span
+          >${{
+            parseFloat(
+              item.prices.volumeUsd.toFixed(0)
+            ).toLocaleString()
+          }}
+          </span
+        >
+      </template>
+      <template v-slot:item.volumeperc="{ item }">
         <span
           >{{
             parseFloat(
-              item.prices.percent_change_24h.toFixed(2)
+              item.prices.volumeUsd.toFixed(0)
             ).toLocaleString()
           }}
           %</span
         >
       </template>
-      <template v-slot:item.prices7="{ item }">
-        <span
-          >{{
-            parseFloat(
-              item.prices.percent_change_7d.toFixed(2)
-            ).toLocaleString()
-          }}
-          %</span
-        >
-      </template>
-      <template v-slot:item.marketCap="{ item }">
+      <template v-slot:item.liquidity="{ item }">
         <span>{{
-          parseFloat(item.prices.market_cap.toFixed(2)).toLocaleString()
+          parseFloat(item.prices.effectiveLiquidity.toFixed(2)).toLocaleString()
         }}</span>
       </template>
-      <template v-slot:item.volume_24h="{ item }">
+      
+      <template v-slot:item.lastupdate="{ item }">
         <span
-          >$
+          >
           {{
-            parseFloat(item.prices.volume_24h.toFixed(2)).toLocaleString()
+            item.prices.lastUpdated
           }}</span
         >
       </template>
-      <template v-slot:item.circ_supply="{ item }">
-        <span
-          >$ {{ parseFloat(item.circ_supply.toFixed(2)).toLocaleString() }}
-          {{ item.symbol }}</span
-        >
-      </template> -->
+
+
     </v-data-table>
+    
+
+    <v-card-text>
+      <h2 class="text-h6 mb-2">
+          Algorithms:
+      </h2>
+      <v-chip-group
+          active-class="primary--text"
+          column
+          
+        >
+          <v-chip
+            v-for="(item, index) in algorithms"
+            :key="index"
+            :href="`/exchanges/${item.tag_link}`"
+          >
+            {{ item.tag }} 
+          </v-chip>
+      </v-chip-group>
+    </v-card-text>
+    
+   <v-card-text>
+      <h2 class="text-h6 mb-2">
+          Plataform:
+      </h2>
+      <v-chip-group
+          active-class="primary--text"
+          column
+          
+        >
+          <v-chip
+            v-for="(item, index) in plataform"
+            :key="index"
+            :href="`/exchanges/${item.tag_link}`"
+          >
+            {{ item.tag }} 
+          </v-chip>
+      </v-chip-group>
+    </v-card-text>
+
+   <v-card-text>
+      <h2 class="text-h6 mb-2">
+          Industry:
+      </h2>
+      <v-chip-group
+          active-class="primary--text"
+          column
+          
+        >
+          <v-chip
+            v-for="(item, index) in industries"
+            :key="index"
+            :href="`/exchanges/${item.tag_link}`"
+          >
+            {{ item.tag }} 
+          </v-chip>
+      </v-chip-group>
+    </v-card-text>
+
+    <v-card-text>
+      <h2 class="text-h6 mb-2">
+          Categories:
+      </h2>
+      <v-chip-group
+          active-class="primary--text"
+          column
+          
+        >
+          <v-chip
+            v-for="(item, index) in categories"
+            :key="index"
+            :href="`/exchanges/${item.tag_link}`"
+          >
+            {{ item.tag }} 
+          </v-chip>
+      </v-chip-group>
+    </v-card-text>
+
+    <div class="mb-12">
+              <v-img 
+                :src="'https://s2.coinmarketcap.com/static/img/coins/128x128/' + item.id + '.png'" 
+                :alt="item.name" 
+                height="100px"
+                max-width="100px"
+              >
+              </v-img>
+    </div>
+
+     <!-- </v-chip-group> -->
+    <!-- </v-card-text> -->
+
     <v-btn href="coin/1">Ola</v-btn>
   </div>
 </template>
@@ -87,7 +226,10 @@ export default {
   data: () => {
     return {
         item: {},
-        tags: [],
+        categories: [],
+        algorithms: [],
+        industries: [],
+        plataform: [],
         explorers: [],
         prices: {},
         tradingPairs: [],
@@ -109,33 +251,42 @@ export default {
           text: "Exchange",
           value: "exchange",
           align: "start",
-        }
-        // },
-        // {
-        //   text: "Buy",
-        //   value: "buycoin",
-        //   align: "start",
-        // },
-        // {
-        //   text: "Sell",
-        //   value: "sellcoin",
-        //   align: "end",
-        // },
-        // {
-        //   text: "",
-        //   value: "prices24",
-        //   align: "end",
-        // },
-        // {
-        //   text: "7d%",
-        //   value: "prices7",
-        //   align: "end",
-        // },
-        // {
-        //   text: "Market Cap",
-        //   value: "marketCap",
-        //   align: "end",
-        // },
+        },
+        {
+          text: "Pairs",
+          value: "pairs",
+          align: "center",
+        },
+        {
+          text: "Price",
+          value: "prices",
+          align: "end",
+        },
+        {
+          text: "+2% Depth",
+          value: "depthpositive",
+          align: "end",
+        },
+        {
+          text: "-2% Depth",
+          value: "depthnegative",
+          align: "end",
+        },
+        {
+          text: "Volume",
+          value: "volume",
+          align: "end",
+        },
+        {
+          text: "Liquidity%",
+          value: "liquidity",
+          align: "end",
+        },
+        {
+          text: "Last Update",
+          value: "lastupdate",
+          align: "end",
+        },
         // {
         //   text: "Volume (24h)",
         //   value: "volume_24h",
@@ -152,14 +303,14 @@ export default {
     }
   },
 
-//   watch: {
-//     options: {
-//       handler() {
-//         this.readData();
-//       },
-//     },
-//     deep: true,
-//   },
+  watch: {
+    options: {
+      handler() {
+        this.readData();
+      },
+    },
+    deep: true,
+  },
 
   created() {
       this.buscarCoin();
@@ -172,51 +323,91 @@ export default {
     
 
   methods: {
+      
+      getPairs(type, coin_slug){
+        console.log('getPairs')
+
+        this.loading = true;
+        const { page, itemsPerPage } = this.options;
+        let pageNumber = page - 1;
+
+        pageNumber = pageNumber === -1 ? 0 : pageNumber;
+        //console.log('pag number', pageNumber)
+        //console.log('slug', coin_slug)
+
+        let url = 'tradingPairs/'+ coin_slug +'/type/' + type + 'Pair?size=' + itemsPerPage + '&page=' + pageNumber
+        console.log('url', url)
+        
+        this.$request("get", url)
+          .then((data) => {
+            console.log('data -> ', data)
+            //this.items1 = data.data.dados;
+            this.totalItems = data.data.totalItems;
+            this.numberOfPages = data.data.numberOfPages;
+            //console.log('total items', data.data.totalItems, 'number of pages', data.data.numberOfPages)
+            
+            let ids = data.data.dados.map((e) => e.marketid).toString();
+            //console.log('ids', ids);
+            this.getPrices(ids, data.data.dados, coin_slug, type.toLowerCase());
+          })
+          .catch((e) => console.log(e));
+
+      },
+
       buscarCoin(){
         let url = window.location.href
         let coin_id = url.split("/").slice(-1).pop()
         this.$request("get", `coins/${coin_id}`)
         .then((data) => {
-            console.log('data', data)
-            console.log(data.data[0])
+            console.log('data-total', data)
+            console.log('data.data[0]', data.data[0])
+            // data.map(e => {
+            //   console.log('e', e)
+            // })
+            //console.log(data.data[0])
             this.item = data.data[0]
-            this.tags = data.data[0].nomecat.split(';')
-            this.slug = data.data[0].slug
+            this.categories = data.data[0].nomecat
+            this.algorithms = data.data[0].nomeal
+            this.industries = data.data[0].nomeind
+            this.plataform = data.data[0].nomeplat
+            console.log('tags', this.categories)
+            this.slug = data.data[0].slug 
         
         })
         .catch((e) => console.log(e));
         },
 
     readData() {
+      console.log('readData')
       console.log('options', this.options)
       let myurl = window.location.href
+
       let coin_slug = myurl.split("/").slice(-1).pop()
       this.loading = true;
       const { page, itemsPerPage } = this.options;
       let pageNumber = page - 1;
       pageNumber = pageNumber === -1 ? 0 : pageNumber;
-      console.log('pag number', pageNumber)
-      console.log('slug')
+
       let url = 'tradingPairs/'+ coin_slug +'/type/SpotPair?size=' + itemsPerPage + '&page=' + pageNumber
-      console.log('url', url)
+      //console.log('url', url)
       this.$request("get", url)
         .then((data) => {
           console.log('data -> ', data)
           //this.items1 = data.data.dados;
           this.totalItems = data.data.totalItems;
           this.numberOfPages = data.data.numberOfPages;
-          console.log('total items', data.data.totalItems, 'number of pages', data.data.numberOfPages)
+          //console.log('total items', data.data.totalItems, 'number of pages', data.data.numberOfPages)
           
           let ids = data.data.dados.map((e) => e.marketid).toString();
-          console.log('ids', ids);
-          this.getPrices(ids, data.data.dados, coin_slug);
+          //console.log('ids', ids);
+          this.getPrices(ids, data.data.dados, coin_slug, 'spot');
         })
         .catch((e) => console.log(e));
 
     },
 
-        getPrices(ids, dados, slug) {
-            this.$request("getp", `marketPairPrice?slug=${slug}&category=spot&market=${ids}`)
+        getPrices(ids, dados, slug, type) {
+            this.$request("getp", `marketPairPrice?slug=${slug}&category=${type}&market=${ids}`)
             .then((data) => {
                 //console.log(data.data);
                 let prices = Object.values(data.data).map((item) => {

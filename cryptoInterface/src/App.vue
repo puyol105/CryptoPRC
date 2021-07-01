@@ -74,7 +74,7 @@
     
       id="scrolling-techniques-2"
       class="mt-16 overflow-y-auto"
-      max-height="800"
+      max-height="600"
       color="background"
     >
       <v-container style="height: 1000px"

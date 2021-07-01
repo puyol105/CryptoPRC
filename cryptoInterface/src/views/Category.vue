@@ -9,7 +9,7 @@
       :options.sync="options"
       :server-items-length="totalItems"
       :loading="loading"
-      sort-by="name"
+      
       @onclick="cenas()"
       
     >

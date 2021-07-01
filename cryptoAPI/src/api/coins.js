@@ -13,11 +13,43 @@ function aux(ids_string){
      });
 } 
 
+function normalize_data(data){
+  let categories = ['nomeal', 'nomecat', 'nomeind', 'nomeplat']
+  //console.log('here', data[0])
+
+  categories.forEach( elem => {
+    //console.log('tem elem', elem)
+    if(data[0].hasOwnProperty(elem) && data[0][elem] != ''){
+      console.log('here')
+      var d = data[0][elem].split(';')
+      let result = d.map(e => {
+        let fix = gen_tag_id(e)
+        console.log('fix',fix)
+        return {tag: e, tag_link: gen_tag_id(e)}
+      }) 
+      console.log('result', result)
+      console.log('d',d)
+      data[0][elem] = result
+    }
+  })
+  return data
+}
+function gen_tag_id(tag){
+  subs = ['\\', '/', '&', '[', ']', '(', ')']
+  subs.forEach( (elem) => {
+    console.log('elem', elem)
+    tag = tag.replace(elem, '')
+    console.log('substitui os ',elem, 'tag', tag)
+  
+  })
+  return tag.replaceAll(' ','_').toLowerCase()
+}
 router.get('/', function(req, res){
   if(req.query.size && req.query.page){
     Coins.listCoins()
       .then( dados => {
         console.log('dados', dados.sort((a1,a2) => parseInt(a1.id) - parseInt(a2.id)))
+
         res.json({totalItems: dados.length , numberOfPages: Math.floor(dados.length/req.query.size), dados : dados.sort((a1,a2) => parseInt(a1.id) > parseInt(a2.id)).splice(req.query.page * req.query.size, req.query.size)})
         
       })
@@ -50,7 +82,18 @@ router.get('/', function(req, res){
 
 router.get('/:slug', function(req, res){
   Coins.getCoin(req.params.slug)
-    .then( dados => res.json(dados))
+    .then( dados => {
+      console.log('here')
+      
+      console.log('dados antes', dados)
+
+      result_data = normalize_data(dados)
+      
+      console.log('dados depois', result_data)
+
+      res.json(result_data)
+      
+    })
     .catch( e => res.status(500).send(`Error listing Coins ${req.params.slug} ${e}`))
 });
 

@@ -20,9 +20,7 @@ const TradingPairs = require('../controllers/tradingPairs');
 router.get('/:slug/type/:type', function(req, res){
   TradingPairs.getTradingPair(req.params.slug,req.params.type)
     .then( dados => {
-      res.json({totalItems: dados.length , numberOfPages: Math.floor(dados.length/req.query.size), dados : dados.sort((a1,a2) => parseInt(a1.id) > parseInt(a2.id)).splice(req.query.page * req.query.size, req.query.size)})
-      res.json(dados)
-    
+      res.json({totalItems: dados.length , numberOfPages: Math.floor(dados.length/req.query.size), dados : dados.sort((a1,a2) => parseInt(a1.id) > parseInt(a2.id)).splice(req.query.page * req.query.size, req.query.size)})    
     })
     .catch( e => res.status(500).send(`Error listing Trading Pair ${req.params.id} ${e}`))
 });

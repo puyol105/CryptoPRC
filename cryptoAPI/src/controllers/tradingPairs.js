@@ -26,7 +26,9 @@ TradingPairs.getTradingPair = async function (slug,type) {
             ?coinSell :id ?idSell.
         }
         ?coin :éParBuy|:éParSell ?tp.
+        
         ?coin :slug ?slugBuy.
+        ?coin :name ?nameBuy.
         filter(?slugBuy='${slug}')
     } `);
     

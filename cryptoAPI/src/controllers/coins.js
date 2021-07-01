@@ -50,7 +50,7 @@ Coins.listCoin2 = async function (id) {
 Coins.getCoin = async function (slug) {
   try {
     const result = await db.query(`
-select  ?id ?rank (group_concat(distinct ?explorers; separator = ';') as ?explorers) (group_concat(distinct ?community; separator = ';') as ?community) ?mineable ?max_supply ?about ?name ?original_url (group_concat(distinct ?other_links; separator = ';') as ?other_links) ?slug ?source_code ?symbol ?website ?whitepaper (group_concat(distinct ?nome; separator = ';') as ?nome) (group_concat(distinct ?nomecat; separator = ';') as ?nomecat) (group_concat(distinct ?nomeins; separator = ';') as ?nomeins) ?nomeplat where{
+select  ?id ?rank (group_concat(distinct ?explorers; separator = ';') as ?explorers) (group_concat(distinct ?community; separator = ';') as ?community) ?mineable ?max_supply ?about ?name ?original_url (group_concat(distinct ?other_links; separator = ';') as ?other_links) ?slug ?source_code ?symbol ?website ?whitepaper (group_concat(distinct ?nomeal; separator = ';') as ?nomeal) (group_concat(distinct ?nomecat; separator = ';') as ?nomecat) (group_concat(distinct ?nomeind; separator = ';') as ?nomeind) (group_concat(distinct ?nomeplat; separator = ';') as ?nomeplat) where{
     ?coin a :Coin.
     ?coin :id ?id.
     optional{
@@ -94,7 +94,7 @@ select  ?id ?rank (group_concat(distinct ?explorers; separator = ';') as ?explor
     }
     optional{
         ?coin :temAlgorithm ?temAlgorithm.
-        ?temAlgorithm :name ?nome.
+        ?temAlgorithm :name ?nomeal.
     }
     optional{
         ?coin :temCategory ?temCategory.
@@ -102,7 +102,7 @@ select  ?id ?rank (group_concat(distinct ?explorers; separator = ';') as ?explor
     }
     optional{
         ?coin :temIndustry ?temIndustry.
-        ?temIndustry :name ?nomeins.
+        ?temIndustry :name ?nomeind.
     }
     optional{
         ?coin :temPlataform ?temPlataform.
@@ -112,10 +112,10 @@ select  ?id ?rank (group_concat(distinct ?explorers; separator = ';') as ?explor
         ?coin :about ?about.
     }
     filter(?slug='${slug}')
-} group by ?id ?rank ?mineable ?max_supply ?name ?about ?original_url ?slug ?source_code ?symbol ?website ?whitepaper ?nomeplat
+} group by ?id ?rank ?mineable ?max_supply ?name ?about ?original_url ?slug ?source_code ?symbol ?website ?whitepaper
 
     `);
-    console.log(result)
+    //console.log(result)
     return result;
   } 
   catch (e) {
