@@ -11,7 +11,7 @@ const api = require('./api');
 const coinsRouter = require('./api/coins')
 const exchangesRouter = require('./api/exchanges')
 const tradingPairsRouter = require('./api/tradingPairs')
-const categoriesRouter = require('./api/categories')
+const categoriesRouter = require('./api/tags')
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use('/api/v1', api);
 app.use('/coins', coinsRouter)
 app.use('/exchanges', exchangesRouter)
 app.use('/tradingPairs', tradingPairsRouter)
-app.use('/categories', categoriesRouter)
+app.use('/tags', categoriesRouter)
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
