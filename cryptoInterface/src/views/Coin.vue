@@ -138,7 +138,7 @@
           <v-chip
             v-for="(item, index) in item.nomeal"
             :key="index"
-            :href="`/tags/algorithm${item.tag_link}`"
+            :href="`/tags/algorithm/${item.tag_link}`"
           >
             {{ item.tag }} 
           </v-chip>
@@ -176,7 +176,7 @@
           <v-chip
             v-for="(item, index) in item.nomeind"
             :key="index"
-            :href="`/tags/industry${item.tag_link}`"
+            :href="`/tags/industry/${item.tag_link}`"
           >
             {{ item.tag }} 
           </v-chip>
@@ -195,7 +195,7 @@
           <v-chip
             v-for="(item, index) in item.nomecat"
             :key="index"
-            :href="`/tags/categories${item.tag_link}`"
+            :href="`/tags/categories/${item.tag_link}`"
           >
             {{ item.tag }} 
           </v-chip>
