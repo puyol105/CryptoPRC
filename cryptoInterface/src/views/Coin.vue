@@ -136,9 +136,9 @@
           
         >
           <v-chip
-            v-for="(item, index) in algorithms"
+            v-for="(item, index) in item.nomeal"
             :key="index"
-            :href="`/exchanges/${item.tag_link}`"
+            :href="`/tags/algorithm${item.tag_link}`"
           >
             {{ item.tag }} 
           </v-chip>
@@ -155,9 +155,9 @@
           
         >
           <v-chip
-            v-for="(item, index) in plataform"
+            v-for="(item, index) in item.nomeplat"
             :key="index"
-            :href="`/exchanges/${item.tag_link}`"
+            :href="`/tags/plataform/${item.tag_link}`"
           >
             {{ item.tag }} 
           </v-chip>
@@ -174,9 +174,9 @@
           
         >
           <v-chip
-            v-for="(item, index) in industries"
+            v-for="(item, index) in item.nomeind"
             :key="index"
-            :href="`/exchanges/${item.tag_link}`"
+            :href="`/tags/industry${item.tag_link}`"
           >
             {{ item.tag }} 
           </v-chip>
@@ -193,9 +193,9 @@
           
         >
           <v-chip
-            v-for="(item, index) in categories"
+            v-for="(item, index) in item.nomecat"
             :key="index"
-            :href="`/exchanges/${item.tag_link}`"
+            :href="`/tags/categories${item.tag_link}`"
           >
             {{ item.tag }} 
           </v-chip>
@@ -210,6 +210,39 @@
                 max-width="100px"
               >
               </v-img>
+    </div>
+
+    <div>
+      <v-menu
+        bottom
+        offset-y
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            class="ma-2"
+            v-bind="attrs"
+            v-on="on"
+          >
+            A Menu
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, i) in item.explorers.split(';')"
+            :key="i"
+            
+          > <a :href="`${item}`">{{item}}</a>
+            <!-- <v-list-item> <a :href="`${item}`">{{item}}</a></v-list-item> -->
+
+            <!-- <v-list-item-title ><a :href="`${item}`" target="_blank"> {{ item }} </a></v-list-item-title> -->
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
+
+
+    <div>
+      <p>{{item.about}}</p>
     </div>
 
      <!-- </v-chip-group> -->
@@ -227,10 +260,10 @@ export default {
   data: () => {
     return {
         item: {},
-        categories: [],
-        algorithms: [],
-        industries: [],
-        plataform: [],
+        // categories: [],
+        // algorithms: [],
+        // industries: [],
+        // plataform: [],
         explorers: [],
         prices: {},
         tradingPairs: [],
@@ -324,7 +357,35 @@ export default {
     
 
   methods: {
-      
+
+      redirect: function (link, target = '_blank') {
+        console.log('target', target)
+        window.open(link, target);
+      },
+
+      buscarCoin(){
+        let url = window.location.href
+        let coin_id = url.split("/").slice(-1).pop()
+        this.$request("get", `coins/${coin_id}`)
+        .then((data) => {
+            console.log('data-total', data)
+            console.log('data.data[0]', data.data[0])
+            // data.map(e => {
+            //   console.log('e', e)
+            // })
+            //console.log(data.data[0])
+            this.item = data.data[0]
+            // this.categories = data.data[0].nomecat
+            // this.algorithms = data.data[0].nomeal
+            // this.industries = data.data[0].nomeind
+            // this.plataform = data.data[0].nomeplat
+            // console.log('tags', this.categories)
+            this.slug = data.data[0].slug 
+        
+        })
+        .catch((e) => console.log(e));
+        },
+
       getPairs(type, coin_slug){
         console.log('getPairs')
 
@@ -354,29 +415,6 @@ export default {
           .catch((e) => console.log(e));
 
       },
-
-      buscarCoin(){
-        let url = window.location.href
-        let coin_id = url.split("/").slice(-1).pop()
-        this.$request("get", `coins/${coin_id}`)
-        .then((data) => {
-            console.log('data-total', data)
-            console.log('data.data[0]', data.data[0])
-            // data.map(e => {
-            //   console.log('e', e)
-            // })
-            //console.log(data.data[0])
-            this.item = data.data[0]
-            this.categories = data.data[0].nomecat
-            this.algorithms = data.data[0].nomeal
-            this.industries = data.data[0].nomeind
-            this.plataform = data.data[0].nomeplat
-            console.log('tags', this.categories)
-            this.slug = data.data[0].slug 
-        
-        })
-        .catch((e) => console.log(e));
-        },
 
     readData() {
       console.log('readData')

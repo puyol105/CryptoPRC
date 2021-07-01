@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Exchanges from "../views/Exchanges.vue";
 import Coin from "../views/Coin.vue";
-import Category from "../views/Category.vue";
+import Tags from "../views/Tags.vue";
 
 
 Vue.use(VueRouter);
@@ -25,9 +25,9 @@ const routes = [
     component: Coin,
   },
   {
-    path: "/category/:id",
+    path: "/tags/:tag/:id",
     name: "Category",
-    component: Category,
+    component: Tags,
   },
   {
     path: "/login",
