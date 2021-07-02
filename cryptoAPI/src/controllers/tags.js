@@ -10,15 +10,22 @@ String.prototype.capitalize = function() {
 
 
 
-Tags.listTags = async function () {
+Tags.listTags = async function (tag) {
   try {
     const result = await db.query(
-      `select ?category ?nome where { 
-        ?category a :Category ;
-                      :name ?nome .
-      } limit 100`);
-    
-    return result;
+    `select * where { 
+      ?s a :${tag} ;
+          :name ?name .
+    }`);
+    console.log('result', result)
+
+    let r = result.map((e) => {
+      return({
+        link: e.s.split(`${tag.toLowerCase()}_`)[1],
+        name: e.name
+      })
+    })
+    return r;
   
   } catch (e) {
       throw e;
@@ -33,15 +40,22 @@ Tags.listTag = async function (tag, id) {
   try {
     const result = await db.query(
       `select * where {
-        ?s :tem${f_tag} :${tag}_${id}.
-          optional {
-                  ?coin :name ?name .
-                  ?coin :symbol ?symbol .
-                  ?coin :slug ?slug .
-                  ?coin :id ?id .
-              }
+        ?coin :tem${f_tag} :${tag}_${id}.
+        :${tag}_${id} :name ?nametag.
+        optional {
+          ?coin :name ?name .
+        }
+        optional {
+          ?coin :symbol ?symbol .
+        }
+        optional {
+            ?coin :slug ?slug .
+        }
+        optional {
+            ?coin :id ?id .
+        }
           
-      } limit 100 `);
+      } `);
     
     console.log('result category', result)
     return result;

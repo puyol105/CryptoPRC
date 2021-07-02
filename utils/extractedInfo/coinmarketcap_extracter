@@ -25,14 +25,13 @@ def extract_coins(coins:dict) -> dict:
   rank = 1
   
   while n_pag < 54:
-    if(n_pag == 5 or n_pag == 10 or n_pag == 15 or n_pag == 20 or n_pag == 25 or n_pag == 30 or n_pag == 35 or n_pag == 40):
-      with open(f'coins{n_pag}.json', 'w') as file: 
-        file.write(json.dumps(coins_list, indent=4, sort_keys=False))
       
     if(n_pag == 0):
       page_url = 'https://coinmarketcap.com/'
+      n_pag+=1
     else:
       page_url = f'https://coinmarketcap.com/?page={n_pag}'
+    
     
     n_pag+=1
       
@@ -40,7 +39,9 @@ def extract_coins(coins:dict) -> dict:
     page_request = requests.get(page_url)
     
     rank, coins_list = extract_coin(page_request.text, coins_list, rank)
-    
+    with open(f'coins{n_pag}.json', 'w') as file: 
+      file.write(json.dumps(coins_list, indent=4, sort_keys=False))
+
   
   coins['cryptomoedas'] = coins_list
   return coins
@@ -66,7 +67,7 @@ def extract_coin(page:str, coins:list, rank:int) -> list:
       coin_url = f'https://coinmarketcap.com{coin_url}'
 
       r = requests.get(coin_url)
-      time.sleep(2.5)
+      time.sleep(1)
 
       soup = BeautifulSoup(r.text, 'html.parser')
       #print('html', soup.prettify())
@@ -179,7 +180,7 @@ def extract_coin(page:str, coins:list, rank:int) -> list:
             #print('outro\n table_header: ', table_header.string, '\n')
 
       coins.append(coin)
-      print(coin)
+      print(coin, ',')
 
   return (rank, coins)
 
@@ -334,8 +335,11 @@ def main():
   try:
     with open('coins.json', 'w') as file: 
       coins = {}
+      print('[')
       out_coins = extract_coins(coins)
       file.write(json.dumps(out_coins, indent=4, sort_keys=False))
+      print(']')
+
       #print(json.dumps(out_coins, indent=4, sort_keys=True))
   except Exception as error:
     print('error processing coins', error)
@@ -343,14 +347,14 @@ def main():
   #pp = pprint.PrettyPrinter(indent=4)
   #pp.pprint(out_coins)
   
-  try:
-    with open('exchanges.json', 'w') as file: 
-      exchanges = {}
-      out_exchanges = extract_exchanges(exchanges)
-      file.write(json.dumps(out_exchanges, indent=4, sort_keys=False))
-      #print(json.dumps(out_exchanges, indent=4, sort_keys=False))
-  except Exception as error:
-    print('error processing exchanges', error)
+  # try:
+  #   with open('exchanges.json', 'w') as file: 
+  #     exchanges = {}
+  #     out_exchanges = extract_exchanges(exchanges)
+  #     file.write(json.dumps(out_exchanges, indent=4, sort_keys=False))
+  #     #print(json.dumps(out_exchanges, indent=4, sort_keys=False))
+  # except Exception as error:
+  #   print('error processing exchanges', error)
 
   #pp = pprint.PrettyPrinter(indent=4)
   #pp.pprint(out_exchanges)

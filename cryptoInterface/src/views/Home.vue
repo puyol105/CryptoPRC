@@ -13,7 +13,7 @@
       @onclick="cenas()"
       
     >
-      <template v-slot:item.id="{ item }">
+      <!-- <template v-slot:item.id="{ item }">
             <div class="p-2">
               <v-img 
                 :src="'https://s2.coinmarketcap.com/static/img/coins/64x64/' + item.id + '.png'" 
@@ -23,7 +23,7 @@
               >
               </v-img>
             </div>
-          </template>
+          </template> -->
       <template v-slot:item.name="{ item }">
         <a :href="`/coin/${item.slug}`"> {{ item.name }} ( {{ item.symbol }} )
           

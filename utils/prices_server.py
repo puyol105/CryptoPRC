@@ -30,9 +30,13 @@ def list_to_query_string(id_list:list) -> str:
 
 def filter_json( data_json, ids_list):
   result = []
+  print(ids_list)
   for data in data_json:
+    print('A processar exchange id:', data['id'])
     if( str(data['id']) in ids_list ):
+      print('Encontrou processar exchange id:', data['id'])
       result.append(data)
+  print('acabou')
   return result
 
 #----------------------------------------------------------------
@@ -41,8 +45,9 @@ def filter_json_2( data_json, ids_list):
   result = []
   #print('data_json', data_json, 'ids_list', ids_list)
   for data in data_json:
-    #print(data['marketId'], ids_list)
+    print(data['marketId'], ids_list)
     if( str(data['marketId']) in ids_list ):
+      print('data[markeId]', data['marketId'], 'in', ids_list)
       #print('data ---', data, '\n')
       result.append(data)
   print('tamanho', len(result))
@@ -90,7 +95,7 @@ def exchange_price():
   
   #print('req_query_category', req_query_category, type(req_query_category))
 
-  # query_string = list_to_query_string(req_query_id)
+  #query_string = list_to_query_string(req_query_id)
   # print('query_string', query_string)
   
   # r_prices_quotes = requests.get('https://web-api.coinmarketcap.com/v1/exchange/quotes/latest?id=' + query_string)
@@ -100,7 +105,9 @@ def exchange_price():
   json_data_listings = r_prices_listings.json()
 
   if(json_data_listings['status']['error_code'] == 0):
-    data = filter_json(json_data_listings['data'], req_query_id)
+    data = filter_json(json_data_listings['data'], req_query_id[0].split(','))
+
+
     data = json.dumps(data)
   else:
     abort(404, description="Status error_code = 0")
@@ -114,7 +121,6 @@ def exchange_price():
 
 #----------------------------------------------------------------
 
-# VER DEPOIS
 @app.route('/marketPairPrice', methods = ['GET'])
 def market_pair_price():
   
@@ -160,7 +166,50 @@ def market_pair_price():
   return response
   
 #----------------------------------------------------------------
- 
+
+@app.route('/marketPairPriceExchange', methods = ['GET'])
+def market_pair_price_exchange():
+  
+  if (req_query_id := request.args.getlist("slug")) is None:
+    abort(404, description="No request query id provided")
+  query_id_string = list_to_query_string(req_query_id)
+
+  if (req_query_category := request.args.getlist("category")) is None:
+    abort(404, description="No request query category provided")
+  query_category_string = list_to_query_string(req_query_category)
+
+  if (req_query_market := request.args.getlist("market")) is None:
+    abort(404, description="No request query market provided")
+  query_market_string = list_to_query_string(req_query_market)
+  
+  print('req_query_id', req_query_id, 'req_query_category', req_query_category, 'req_query_market', req_query_market)
+  print('query_id_string', query_id_string, 'query_category_string', 'query_market_string', query_market_string)
+  
+  url = f'https://api.coinmarketcap.com/data-api/v3/exchange/market-pairs/latest?slug={query_id_string}&category={query_category_string}&start=1&limit=500'
+  print('url', url)
+  r_market_pair = requests.get(url)
+
+  json_data_market_pair = r_market_pair.json()
+  #print('status', json_data_market_pair['status']['error_code'])
+
+  if(json_data_market_pair['status']['error_code'] == '0'):
+    print('entrou')
+    with open('mercados.json', 'w') as f:
+      f.write(json.dumps(json_data_market_pair['data']['marketPairs'], indent=4, sort_keys=False))
+
+    data = filter_json_2(json_data_market_pair['data']['marketPairs'], req_query_market[0].split(','))
+    data = json.dumps(data)
+  else:
+    abort(404, description="Status error_code = 0")
+
+  #data = json.dumps(json_data_market_pair)
+
+  response = app.response_class(
+    response = data,
+    status = 200,
+    mimetype = 'application/json'
+  ) 
+  return response 
 
 def update_prices(): 
     threading.Timer(15, update_prices).start()

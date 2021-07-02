@@ -1,6 +1,11 @@
 <template>
+
   <div>
-    <v-data-table 
+      <h1>
+        {{this.nametag}}
+      </h1>
+    
+      <v-data-table 
       class="transparent" 
       :headers="headers1" 
       :items="items1"
@@ -9,58 +14,71 @@
       :options.sync="options"
       :server-items-length="totalItems"
       :loading="loading"
-      sort-by="name"
+      
       @onclick="cenas()"
       
     >
-      <template v-slot:item.id="{ item }">
+      <!-- <template v-slot:item.id="{ item }">
             <div class="p-2">
               <v-img 
-                :src="'https://s2.coinmarketcap.com/static/img/exchanges/64x64/' + item.id + '.png'" 
+                :src="'https://s2.coinmarketcap.com/static/img/coins/64x64/' + item.id + '.png'" 
                 :alt="item.name" 
                 height="50px"
                 max-width="50px"
               >
               </v-img>
             </div>
-          </template>
+          </template> -->
       <template v-slot:item.name="{ item }">
-        <a :href="`/exchange/${item.slug}`"> {{ item.name }}
+        <a :href="`/coin/${item.slug}`"> {{ item.name }} ( {{ item.symbol }} )
           
         </a>
       </template>
-      <template v-slot:item.score="{ item }">
-        <span 
-          >{{item.exchange_score}}
-        </span>
-      </template>
-
-      <template v-slot:item.volume_24h="{ item }">
+      <template v-slot:item.pricesP="{ item }">
         <span
-          >$ {{
+          >$
+          {{ parseFloat(item.prices.price.toFixed(2)).toLocaleString() }}</span
+        >
+      </template>
+      <template v-slot:item.prices24="{ item }">
+        <span
+          >{{
             parseFloat(
-              item.prices.volume_24h.toFixed(2)
+              item.prices.percent_change_24h.toFixed(2)
             ).toLocaleString()
           }}
-          </span
+          %</span
         >
       </template>
-      <template v-slot:item.visits="{ item }">
+      <template v-slot:item.prices7="{ item }">
         <span
-          >{{item.visits}}</span
+          >{{
+            parseFloat(
+              item.prices.percent_change_7d.toFixed(2)
+            ).toLocaleString()
+          }}
+          %</span
         >
       </template>
-
-      <template v-slot:item.num_market_pairs="{ item }">
-        <span>{{item.num_market_pairs}}</span>
+      <template v-slot:item.marketCap="{ item }">
+        <span>{{
+          parseFloat(item.prices.market_cap.toFixed(2)).toLocaleString()
+        }}</span>
       </template>
-
-      <template v-slot:item.num_coins="{ item }">
+      <template v-slot:item.volume_24h="{ item }">
         <span
-          >{{item.num_coins}}
-        </span>
+          >$
+          {{
+            parseFloat(item.prices.volume_24h.toFixed(2)).toLocaleString()
+          }}</span
+        >
       </template>
-      
+      <template v-slot:item.circ_supply="{ item }">
+        <span
+          >$ {{ parseFloat(item.circ_supply.toFixed(2)).toLocaleString() }}
+          {{ item.symbol }}</span
+        >
+      </template>
     </v-data-table>
     <v-btn href="coin/1">Ola</v-btn>
   </div>
@@ -72,6 +90,7 @@ export default {
   name: "Home",
   data: () => {
     return {
+      nametag: '',
       itemid: 0,
       page: 1,
       totalItems: 0,
@@ -93,8 +112,23 @@ export default {
           align: "start",
         },
         {
-          text: "Exchange Score",
-          value: "score",
+          text: "Price",
+          value: "pricesP",
+          align: "end",
+        },
+        {
+          text: "24h%",
+          value: "prices24",
+          align: "end",
+        },
+        {
+          text: "7d%",
+          value: "prices7",
+          align: "end",
+        },
+        {
+          text: "Market Cap",
+          value: "marketCap",
           align: "end",
         },
         {
@@ -103,21 +137,10 @@ export default {
           align: "end",
         },
         {
-          text: "Weekly Visits",
-          value: "visits",
+          text: "Circulation Supply",
+          value: "circ_supply",
           align: "end",
         },
-        {
-          text: "# Markets",
-          value: "num_market_pairs",
-          align: "end",
-        },
-        {
-          text: "# Coins",
-          value: "num_coins",
-          align: "end",
-        },
-
       ],
       items1: [],
     };
@@ -134,28 +157,37 @@ export default {
 
   created() {
     //this.readData();
-    //console.log("final", this.items1);
+    console.log("final", this.items1);
   },
   methods: {
     readData() {
-      let url = window.location.href
-      let exchange_type = url.split("/").slice(-1).pop()
+      console.log('readData')
+      let myurl = window.location.href
+      let tag_info = myurl.split("/").reverse()
+      //let tag_type = myurl.split("/").slice(-1)[-1]
+
+      console.log('tag_id', tag_info)
 
       this.loading = true;
       const { page, itemsPerPage } = this.options;
       let pageNumber = page - 1;
       pageNumber = pageNumber === -1 ? 0 : pageNumber;
-      console.log('pag number', pageNumber)
-      let url_req = 'exchanges/type/' + exchange_type + '?size=' + itemsPerPage + '&page=' + pageNumber
-      this.$request("get", url_req)
+      
+      let url = 'tags/' + tag_info[1] + '/' + tag_info[0] +'?size=' + itemsPerPage + '&page=' + pageNumber
+      console.log('url', url)
+
+      this.$request("get", url)
         .then((data) => {
-          console.log('exchanges -> ', data)
+          console.log('data -> ', data)
           //this.items1 = data.data.dados;
           this.totalItems = data.data.totalItems;
           this.numberOfPages = data.data.numberOfPages;
-          //console.log('total items', data.data.totalItems, 'number of pages', data.data.numberOfPages)
+          this.nametag = data.data.dados[0]['nametag']
+          console.log('nametag', this.nametag)
+          console.log('total items', data.data.totalItems, 'number of pages', data.data.numberOfPages)
           
           let ids = data.data.dados.map((e) => e.id).toString();
+          console.log('ids')
 
           this.getPrices(ids, data.data.dados);
         })
@@ -164,7 +196,7 @@ export default {
     },
 
     getPrices(ids, dados) {
-      this.$request("getp", `exchangePrice?id=${ids}`)
+      this.$request("getp", `coinPrice?id=${ids}`)
         .then((data) => {
           //console.log(data.data);
           let prices = Object.values(data.data).map((item) => {
@@ -173,16 +205,8 @@ export default {
           this.items1 = dados;
           prices.map((e, index) => {
             this.items1[index]["prices"] = e;
-            this.items1[index]["exchange_score"] = Object.values(data.data)[index]["exchange_score"];
-            this.items1[index]["last_updated"] = Object.values(data.data)[index]["last_updated"];
-            this.items1[index]["num_coins"] = Object.values(data.data)[index]["num_coins"];
-            this.items1[index]["num_market_pairs"] = Object.values(data.data)[index]["num_market_pairs"];
-            this.items1[index]["traffic_score"] = Object.values(data.data)[index]["traffic_score"];
-            this.items1[index]["visits"] = Object.values(data.data)[index]["visits"];
-
+            this.items1[index]["circ_supply"] = Object.values(data.data)[index]["circulating_supply"];
           })
-
-          console.log('items final', this.items1)
           this.loading = false;
         })
         .catch((e) => console.log(e));
