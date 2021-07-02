@@ -3,12 +3,6 @@
     clipped-left
     :style="{ background: $vuetify.theme.themes[theme].background }"
   >
-    <!-- <v-container/>
-    <v-container/>
-    <v-container/>
-    <v-container/>
-    <v-container/> -->
-
     <v-app-bar
       app
       color="#fcb69f"
@@ -23,7 +17,9 @@
         ></v-img>
       </template>
 
-      <v-app-bar-nav-icon @click="drawerState = !drawerState"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        @click="drawerState = !drawerState"
+      ></v-app-bar-nav-icon>
 
       <v-toolbar-title>CryptoManiac</v-toolbar-title>
 
@@ -32,55 +28,28 @@
       <template v-slot:extension>
         <v-tabs align-center fixed-tabs dark>
           <v-tab href="/">Cryptocurrencies</v-tab>
-            <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
-                <v-tab
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  Exchanges
-                </v-tab>
-              </template>
-              <v-list>
-                <v-list-item
-
-                  v-for="(item, index) in items"
-                  :key="index"
-                  :href= item.href
-                >
-                  <v-list-item-title class="d-flex justify-center">{{ item.name }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-tab v-bind="attrs" v-on="on"> Exchanges </v-tab>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="(item, index) in items"
+                :key="index"
+                :href="item.href"
+              >
+                <v-list-item-title class="d-flex justify-center">{{
+                  item.name
+                }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
           <v-tab href="/outros">Outros</v-tab>
         </v-tabs>
-      </template>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn> </v-app-bar
-    ><v-navigation-drawer
-      v-model="drawerState"
-      app
-      clipped
-      color="#2A3F54"
-    >
-      <v-list
-        nav
-        dense
-        dark
-      >
-        <v-list-item-group
-          v-model="group"
-          class="white--text"
-        >
+      </template> </v-app-bar
+    ><v-navigation-drawer v-model="drawerState" app clipped color="#2A3F54">
+      <v-list nav dense dark>
+        <v-list-item-group v-model="group" class="white--text">
           <v-list-item link to="/">
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
@@ -94,11 +63,16 @@
             </v-list-item-icon>
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer><v-main> <router-view /> </v-main>
 
-    
+          <v-list-item link to="/users/:id/favs">
+            <v-list-item-icon>
+              <v-icon>mdi-heart</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Favorites</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list> </v-navigation-drawer
+    ><v-main> <router-view /> </v-main>
 
     <v-footer fixed padless dark color="#2A3F54">
       <v-row justify="center" no-gutters>
@@ -122,31 +96,28 @@ export default {
     return {
       drawer: false,
       group: null,
-      items : 
-      [
+      items: [
         {
-          name : 'Spot',
-          href : '/exchanges?type=spot'
-        },
-        
-        {
-          name : 'Derivatives',
-          href : '/exchanges?type=derivatives'
+          name: "Spot",
+          href: "/exchanges?type=spot",
         },
 
         {
-          name : 'Dex',
-          href : '/exchanges?type=dex'
+          name: "Derivatives",
+          href: "/exchanges?type=derivatives",
         },
 
         {
-          name : 'Lending',
-          href : '/exchanges?type=lending'
+          name: "Dex",
+          href: "/exchanges?type=dex",
         },
 
-      ]
-
-    }
+        {
+          name: "Lending",
+          href: "/exchanges?type=lending",
+        },
+      ],
+    };
     //
   },
   computed: {
@@ -154,9 +125,13 @@ export default {
       return this.$vuetify.theme.dark ? "dark" : "light";
     },
     drawerState: {
-      get () { return this.$store.getters.drawerState },
-      set (v) { return this.$store.commit('toggleDrawerState', v) }
-    }
+      get() {
+        return this.$store.getters.drawerState;
+      },
+      set(v) {
+        return this.$store.commit("toggleDrawerState", v);
+      },
+    },
   },
 };
 </script>

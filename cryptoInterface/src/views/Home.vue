@@ -1,32 +1,46 @@
 <template>
-  <div>
-    <v-data-table 
-      class="transparent" 
-      :headers="headers1" 
+  <v-card class="transparent">
+    <v-card-title>
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
+    <v-data-table
+      class="transparent"
+      :headers="headers1"
       :items="items1"
       :page="page"
+      :search="search"
       :pageCount="numberOfPages"
       :options.sync="options"
       :server-items-length="totalItems"
       :loading="loading"
       sort-by="name"
       @onclick="cenas()"
-      
     >
       <template v-slot:item.id="{ item }">
-            <div class="p-2">
-              <v-img 
-                :src="'https://s2.coinmarketcap.com/static/img/coins/64x64/' + item.id + '.png'" 
-                :alt="item.name" 
-                height="50px"
-                max-width="50px"
-              >
-              </v-img>
-            </div>
-          </template>
+        <div class="p-2">
+          <v-img
+            :src="
+              'https://s2.coinmarketcap.com/static/img/coins/64x64/' +
+              item.id +
+              '.png'
+            "
+            :alt="item.name"
+            height="50px"
+            max-width="50px"
+          >
+          </v-img>
+        </div>
+      </template>
       <template v-slot:item.name="{ item }">
-        <a :href="`/coin/${item.slug}`"> {{ item.name }} ( {{ item.symbol }} )
-          
+        <a :href="`/coin/${item.slug}`">
+          {{ item.name }} ( {{ item.symbol }} )
         </a>
       </template>
       <template v-slot:item.pricesP="{ item }">
@@ -75,8 +89,11 @@
         >
       </template>
     </v-data-table>
-    <v-btn href="coin/1">Ola</v-btn>
-  </div>
+  <v-container/>
+  <v-container/>
+  <v-container/>
+
+  </v-card>
 </template>
 
 <script>
@@ -86,12 +103,12 @@ export default {
   data: () => {
     return {
       itemid: 0,
+      search: "",
       page: 1,
       totalItems: 0,
       numberOfPages: 0,
       loading: true,
-      options: {
-      },
+      options: {},
 
       headers1: [
         {
@@ -139,7 +156,7 @@ export default {
       items1: [],
     };
   },
-  
+
   watch: {
     options: {
       handler() {
@@ -155,28 +172,32 @@ export default {
   },
   methods: {
     readData() {
-      console.log('options', this.options)
+      console.log("options", this.options);
 
       this.loading = true;
       const { page, itemsPerPage } = this.options;
       let pageNumber = page - 1;
       pageNumber = pageNumber === -1 ? 0 : pageNumber;
-      console.log('pag number', pageNumber)
-      let url = 'coins?size=' + itemsPerPage + '&page=' + pageNumber
+      console.log("pag number", pageNumber);
+      let url = "coins?size=" + itemsPerPage + "&page=" + pageNumber;
       this.$request("get", url)
         .then((data) => {
-          console.log('data -> ', data)
+          console.log("data -> ", data);
           //this.items1 = data.data.dados;
           this.totalItems = data.data.totalItems;
           this.numberOfPages = data.data.numberOfPages;
-          console.log('total items', data.data.totalItems, 'number of pages', data.data.numberOfPages)
-          
+          console.log(
+            "total items",
+            data.data.totalItems,
+            "number of pages",
+            data.data.numberOfPages
+          );
+
           let ids = data.data.dados.map((e) => e.id).toString();
 
           this.getPrices(ids, data.data.dados);
         })
         .catch((e) => console.log(e));
-
     },
 
     getPrices(ids, dados) {
@@ -189,8 +210,10 @@ export default {
           this.items1 = dados;
           prices.map((e, index) => {
             this.items1[index]["prices"] = e;
-            this.items1[index]["circ_supply"] = Object.values(data.data)[index]["circulating_supply"];
-          })
+            this.items1[index]["circ_supply"] = Object.values(data.data)[index][
+              "circulating_supply"
+            ];
+          });
           this.loading = false;
         })
         .catch((e) => console.log(e));

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const express = require('express');
 const router = express.Router();
 
@@ -42,6 +43,7 @@ function gen_tag_id(tag){
     console.log('substitui os ',elem, 'tag', tag)
   
   })
+  console.log('TAG:::::', tag.replaceAll(' ','_').toLowerCase())
   return tag.replaceAll(' ','_').toLowerCase()
 }
 router.get('/', function(req, res){

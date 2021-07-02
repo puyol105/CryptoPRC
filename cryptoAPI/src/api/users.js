@@ -39,17 +39,18 @@ router.get('/logout', (req, res) => {
 });
 
 // POST '/users/login'  login
-router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), (req, res) => {
-  res.redirect('/main');
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  console.log("ENOTRU!!!!!!")
+  
 });
 
 // POST regista novo user
 router.post('/signup', (req, res) => {
+  console.log(req.body)
   const user = {
     name: req.body.name,
     username: req.body.username,
     email: req.body.email,
-    level: req.body.level,
     password: req.body.password
   };
 
@@ -69,16 +70,9 @@ router.post('/signup', (req, res) => {
         errormsg = 'Email indisponível';
       }
 
-      if (errormsg !== ' ') {
-        console.log(errormsg);
-        console.log('Username ou email já utilizado');
-        res.render('signup', {
-          title: 'Registar',
-          errormsg
-        });
-      } else {
+      if (errormsg === ' ') {
         User.inserir(user)
-          .then(() => res.redirect('/login'))
+          .then((dados2) => {res.json(dados2)})
           .catch((e) => res.render('error', {
             error: e
           }));
