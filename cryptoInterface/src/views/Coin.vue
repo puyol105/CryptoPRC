@@ -5,12 +5,35 @@
       <v-tab @click="getPairs('Perpetual', slug)">Perpetual</v-tab>
       <v-tab @click="getPairs('Futures', slug)">Futures</v-tab>
     </v-tabs>
-
+    <v-card>
+        <v-card-title>
+          <v-img
+            :src="
+              'https://s2.coinmarketcap.com/static/img/coins/128x128/' +
+              item.id +
+              '.png'
+            "
+            height="40px"
+            max-width="40px"
+          >
+          </v-img>
+          {{item.name}}
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+    </v-card-title>
     <v-data-table
       class="transparent"
       :headers="headers1"
       :items="items1"
       :page="page"
+      :search="search"
       :pageCount="numberOfPages"
       :options.sync="options"
       :server-items-length="totalItems"
@@ -104,6 +127,8 @@
         <span> {{ item.prices.lastUpdated }}</span>
       </template>
     </v-data-table>
+    </v-card>
+
 
     <v-card-text>
       <h2 class="text-h6 mb-2">Algorithms:</h2>
@@ -227,6 +252,7 @@ export default {
         item: {},
         explorers: [],
         prices: {},
+        search: '',
         tradingPairs: [],
         page: 1,
         totalItems: 0,

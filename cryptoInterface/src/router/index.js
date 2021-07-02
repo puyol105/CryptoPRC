@@ -6,6 +6,7 @@ import Coin from "../views/Coin.vue";
 import Tag from "../views/Tag.vue";
 import Exchange from "../views/Exchange.vue";
 import Tags from "../views/Tags.vue";
+import store from "../store";
 
 
 Vue.use(VueRouter);
@@ -47,6 +48,12 @@ const routes = [
     component: Tags,
   },
   {
+    path: "/favs",
+    name: "Favs",
+    component: () => import("../views/Favs.vue"),
+  },
+  
+  {
     path: "/login",
     name: "Login",
     component: () => import("../views/Login.vue"),
@@ -67,5 +74,22 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'Login'){
+    store.commit('setToken', null)
+  }
+  if (to.matched.some(record => record.meta.requiresAuth)){
+    if (store.state.token){
+      next()
+    } else{
+      next({
+        name: 'Login'
+      })
+    }
+  } else {
+    next()
+  }
+})
 
 export default router;

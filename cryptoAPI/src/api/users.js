@@ -40,7 +40,8 @@ router.get('/logout', (req, res) => {
 
 // POST '/users/login'  login
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  console.log("ENOTRU!!!!!!")
+  console.log("ENOTRU!!!!!!", req)
+  res.json(req.user)
   
 });
 
@@ -160,38 +161,23 @@ router.get('/:uname', verificaAutenticacao, (req, res) => {
     }));
 });
 
+//GET user favs
+router.get('/:uname/favs', verificaAutenticacao, (req, res) => {
+  var user = req.user;
+  console.log("USR", user)
+  User.consultar(user)
+    .then(dados => res.render('/favs', {
+      dados: dados
+    }))
+    .catch(e => res.render('error', {
+      error: e
+    }))
+})
+
+// POST add fave 
+// router.post('/update/:idUser', verificaAutenticacao, (req, res) => {
+  
+// }
+
 module.exports = router;
 
-// GET TODO PAGINA DE COMPLETAR SIGNUP
-// router.get('/finishSignup', (req, res) => {
-//  res.render('users/finishSignup', {
-//    title: "Finalizar nova conta"
-//  });
-// })
-
-// // GET user page
-// router.get('/profilePage', verificaAutenticacao, (req, res) => {
-//   const idUser = req.user._id;
-//   User.consultar(idUser)
-//     .then((dados) => res.render('users/user', {
-//       infouser: dados,
-//       checksame: true,
-//       title: 'Página de Perfil'
-//     }))
-//     .catch((e) => res.render('error', {
-//       error: e
-//     }));
-// });
-
-// // GET posts favoritos de user
-// router.get('/:uname/favs', verificaAutenticacao, (req, res) => {
-//   const arrayIds = req.user.favPostIds;
-//   Post.listarArray(arrayIds)
-//     .then((dados) => res.render('posts/posts', {
-//       title: 'Posts Favoritos',
-//       lista: dados
-//     }))
-//     .catch((e) => res.render('error', {
-//       error: e
-//     }));
-// });

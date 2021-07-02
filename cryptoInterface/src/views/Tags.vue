@@ -60,7 +60,7 @@
 
     <v-card-text>
       <h2 class="text-h6 mb-2">
-          Industry:
+          Category:
       </h2>
       <v-chip-group
           active-class="primary--text"

@@ -80,7 +80,6 @@
         >
       </template>
     </v-data-table>
-    <v-btn href="coin/1">Ola</v-btn>
   </div>
 </template>
 

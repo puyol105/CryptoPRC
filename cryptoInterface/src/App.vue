@@ -49,26 +49,44 @@
       </template> </v-app-bar
     ><v-navigation-drawer v-model="drawerState" app clipped color="#2A3F54">
       <v-list nav dense dark>
-        <v-list-item-group v-model="group" class="white--text">
-          <v-list-item link to="/">
+        <!-- <v-list-item-group v-for="option in drawerOptions" :key="option.text" v-model="group" class="white--text">
+          <v-list-item  v-if="option.authenticated?(!isLoged()===option.authenticated):true"  link :to="option.link?option.link:void(0)">
+            <v-list-item-icon>
+              <v-icon>{{option.icon}}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>{{option.text}}</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group> -->
+        <v-list-item-group class="white--text">
+          <v-list-item   link to="/">
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
-
-          <v-list-item link to="/login">
+        </v-list-item-group>
+        <v-list-item-group class="white--text">
+          <v-list-item  v-if="isLoged()"  link to="/Login">
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item>
-
-          <v-list-item link to="/users/:id/favs">
+        </v-list-item-group>
+        <v-list-item-group class="white--text">
+          <v-list-item  v-if="!isLoged()"  link to="/favs">
             <v-list-item-icon>
               <v-icon>mdi-heart</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Favorites</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+        <v-list-item-group class="white--text">
+          <v-list-item  v-if="!isLoged()"  @click="logout()">
+            <v-list-item-icon>
+              <v-icon>mdi-exit-run</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Logout</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list> </v-navigation-drawer
@@ -95,6 +113,32 @@ export default {
   data: () => {
     return {
       drawer: false,
+      drawerOptions: [
+        {
+          text: "Home",
+          link: "/",
+          icon: "mdi-home",
+          // authenticated: false
+        },
+        {
+          text: "Login",
+          link: "/login",
+          icon: "mdi-account",
+          authenticated: false
+        },
+        {
+          text: "Favorites",
+          link: "/favs",
+          icon: "mdi-heart",
+          authenticated: true
+        },
+        {
+          text: "Logout",
+          link: "/",
+          icon: "mdi-exit-run",
+          authenticated: true
+        },
+      ],
       group: null,
       items: [
         {
@@ -132,6 +176,20 @@ export default {
         return this.$store.commit("toggleDrawerState", v);
       },
     },
+  },
+  methods: {
+    isLoged() {
+      if (this.$store.state.user)
+        return Object.keys(this.$store.state.user).length === 0;
+    },
+    logout(){
+      this.$request('post','/logout',this.$store.state.user)
+        .then(() => {
+          this.$router.push('/')
+        })
+        .catch(e => console.log(e))
+      this.$store.commit("guardaNomeUtilizador",{})
+    }
   },
 };
 </script>
