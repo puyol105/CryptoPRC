@@ -44,7 +44,7 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <v-tab href="/outros">Outros</v-tab>
+          <v-tab href="/tags">Tags</v-tab>
         </v-tabs>
       </template> </v-app-bar
     ><v-navigation-drawer v-model="drawerState" app clipped color="#2A3F54">
@@ -99,22 +99,22 @@ export default {
       items: [
         {
           name: "Spot",
-          href: "/exchanges?type=spot",
+          href: "/exchanges/spot",
         },
 
         {
           name: "Derivatives",
-          href: "/exchanges?type=derivatives",
+          href: "/exchanges/derivatives",
         },
 
         {
           name: "Dex",
-          href: "/exchanges?type=dex",
+          href: "/exchanges/dex",
         },
 
         {
           name: "Lending",
-          href: "/exchanges?type=lending",
+          href: "/exchanges/lending",
         },
       ],
     };

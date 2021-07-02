@@ -2,15 +2,23 @@ var Exchange = module.exports;
 
 const db = require('../config/db');
 
-Exchange.listExchanges = async function () {
+Exchange.listExchange = async function (slug) {
   try {
     const result = await db.query(
-      `select ?exchange ?id ?name ?slug where { 
-        ?exchange a :Exchange ; 
-                    :id ?id ;
-                    :name ?name ;
-                    :slug ?slug .
-      } limit 100`);
+      `select * where { 
+        ?s a :Exchange ;
+             :slug ?slug .
+          filter(?slug = '${slug}')
+             
+          optional {
+          ?s :name ?name ;
+             :id ?id ;
+             :about ?about ;
+             :fees ?fees ;
+             :chat ?chat ;
+             :other_links ?links .
+             }
+      }`);
     
     return result;
   
@@ -19,16 +27,17 @@ Exchange.listExchanges = async function () {
   }
 };
 
-Exchange.listExchange = async function (id) {
+Exchange.listExchanges = async function (type) {
   try {
     const result = await db.query(
-      `select ?exchange ?id ?name ?slug where { 
-        ?exchange a :Exchange ; 
-                    :id ?id ;
-                    :name ?name ;
-                    :slug ?slug .
-        filter( ?id = ${id})
-      } limit 100`);
+      `select * where { 
+        ?s a :Exchange ;
+             :type ?type ;
+             :name ?name ;
+             :id ?id ;
+             :slug ?slug .
+          filter(?type = '${type}')
+      }`);
     
     return result;
   

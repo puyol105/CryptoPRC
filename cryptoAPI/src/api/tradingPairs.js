@@ -17,14 +17,19 @@ const TradingPairs = require('../controllers/tradingPairs');
 //     .catch( e => res.status(500).send(`Error listing Trading Pair ${req.params.id} ${e}`))
 // });
 
-router.get('/:slug/type/:type', function(req, res){
-  TradingPairs.getTradingPair(req.params.slug,req.params.type)
+router.get('/:slug/type/:typePair', function(req, res){
+  TradingPairs.getTradingPairCoin(req.params.slug,req.params.typePair)
     .then( dados => {
-      console.log(req.params.slug+'/type/'+req.params.type)
       res.json({totalItems: dados.length , numberOfPages: Math.floor(dados.length/req.query.size), dados : dados.sort((a1,a2) => parseInt(a1.id) > parseInt(a2.id)).splice(req.query.page * req.query.size, req.query.size)})    
     })
     .catch( e => res.status(500).send(`Error listing Trading Pair ${req.params.id} ${e}`))
 });
 
-
+router.get('/exchange/:slug/type/:typePair', function(req, res){
+  TradingPairs.getTradingPairExchange(req.params.slug,req.params.typePair)
+    .then( dados => {
+      res.json({totalItems: dados.length , numberOfPages: Math.floor(dados.length/req.query.size), dados : dados.sort((a1,a2) => parseInt(a1.id) > parseInt(a2.id)).splice(req.query.page * req.query.size, req.query.size)})    
+    })
+    .catch( e => res.status(500).send(`Error listing Trading Pair ${req.params.id} ${e}`))
+});
 module.exports = router;

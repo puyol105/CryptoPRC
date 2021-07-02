@@ -1,14 +1,17 @@
 <template>
   <div>
-    <v-tabs background-color="background" center-active centered>
-      <v-tab @click="getPairs('Spot', slug)">Spot</v-tab>
-      <v-tab @click="getPairs('Perpetual', slug)">Perpetual</v-tab>
-      <v-tab @click="getPairs('Futures', slug)">Futures</v-tab>
-    </v-tabs>
 
-    <v-data-table
-      class="transparent"
-      :headers="headers1"
+      <v-tabs background-color="background" 
+      center-active centered>
+        <v-tab @click="getPairs('Spot', slug)">Spot</v-tab>
+        <v-tab @click="getPairs('Perpetual', slug)">Perpetual</v-tab>
+        <v-tab @click="getPairs('Futures', slug)">Futures</v-tab>
+      </v-tabs>
+
+      
+    <v-data-table 
+      class="transparent" 
+      :headers="headers1" 
       :items="items1"
       :page="page"
       :pageCount="numberOfPages"
@@ -16,7 +19,10 @@
       :server-items-length="totalItems"
       :loading="loading"
       sort-by="name"
+      @onclick="cenas()"
+      
     >
+
       <!-- <template v-slot:item.id="{ item }">
             <div class="p-2">
               <v-img 
@@ -28,18 +34,18 @@
               </v-img>
             </div>
           </template> -->
-
+      
       <template v-slot:item.exchange="{ item }">
-        <a :href="`/exchange/${item.prices.exchangeSlug}`">
-          {{ item.prices.exchangeName }}
+        <a :href="`/exchange/${item.prices.exchangeSlug}`"> {{ item.prices.exchangeName }}
+          
         </a>
       </template>
 
-      <template v-slot:item.pairs="{ item }">
-        <!-- <a :href="`/coin/${item.slug}`"> {{ item.name }} ( {{ item.symbol }} ) -->
-        <a :href="`/coin/${item.slugBuy}`"> {{ item.nameBuy }} </a>
-        <a :href="`${item.marketurl}`"> ( {{ item.prices.marketPair }} ) </a>
-        <a :href="`/coin/${item.slugSell}`"> {{ item.nameSell }} </a>
+       <template v-slot:item.pairs="{ item }">
+          <!-- <a :href="`/coin/${item.slug}`"> {{ item.name }} ( {{ item.symbol }} ) -->
+          <a :href="`/coin/${item.slugBuy}`"> {{ item.namebuy }}  </a>
+          <a :href="`${item.marketurl}`">   ( {{ item.prices.marketPair }} )   </a>
+          <a :href="`/coin/${item.slugSell}`">  {{ item.namesell }} </a>
 
         <!-- <span
           >{{item.prices.baseSymbol}}/{{item.prices.quoteSymbol}}</span
@@ -47,20 +53,23 @@
       </template>
 
       <template v-slot:item.prices="{ item }">
-        <span>
-          $ {{ parseFloat(item.prices.price.toFixed(2)).toLocaleString() }}
-        </span>
-      </template>
-
-      <template v-slot:item.depthpositive="{ item }">
-        <td v-if="item.prices.depthUsdPositiveTwo">
-          ${{
+        <span
+          > $ {{
             parseFloat(
-              item.prices.depthUsdPositiveTwo.toFixed(0)
+              item.prices.price.toFixed(2)
             ).toLocaleString()
           }}
+          </span
+        >
+      </template>
+       
+      <template v-slot:item.depthpositive="{ item }">  
+        <td v-if="item.prices.depthUsdPositiveTwo">
+          ${{
+            parseFloat(item.prices.depthUsdPositiveTwo.toFixed(0)).toLocaleString()
+          }}
         </td>
-        <td v-else>-</td>
+        <td v-else> - </td>
         <!-- <span
           >{{
             parseFloat(
@@ -68,28 +77,33 @@
             ).toLocaleString()
           }}
           %</span> -->
-      </template>
-
-      <template v-slot:item.depthnegative="{ item }">
+      </template> 
+      
+      <template v-slot:item.depthnegative="{ item }">  
         <td v-if="item.prices.depthUsdNegativeTwo">
           ${{
-            parseFloat(
-              item.prices.depthUsdNegativeTwo.toFixed(0)
-            ).toLocaleString()
+            parseFloat(item.prices.depthUsdNegativeTwo.toFixed(0)).toLocaleString()
           }}
         </td>
-        <td v-else>-</td>
+        <td v-else> - </td>
       </template>
 
       <template v-slot:item.volume="{ item }">
         <span
-          >${{ parseFloat(item.prices.volumeUsd.toFixed(0)).toLocaleString() }}
-        </span>
+          >${{
+            parseFloat(
+              item.prices.volumeUsd.toFixed(0)
+            ).toLocaleString()
+          }}
+          </span
+        >
       </template>
       <template v-slot:item.volumeperc="{ item }">
         <span
           >{{
-            parseFloat(item.prices.volumeUsd.toFixed(0)).toLocaleString()
+            parseFloat(
+              item.prices.volumeUsd.toFixed(0)
+            ).toLocaleString()
           }}
           %</span
         >
@@ -99,132 +113,39 @@
           parseFloat(item.prices.effectiveLiquidity.toFixed(2)).toLocaleString()
         }}</span>
       </template>
-
+      
       <template v-slot:item.lastupdate="{ item }">
-        <span> {{ item.prices.lastUpdated }}</span>
+        <span
+          >
+          {{
+            item.prices.lastUpdated
+          }}</span
+        >
       </template>
+
+
     </v-data-table>
 
-    <v-card-text>
-      <h2 class="text-h6 mb-2">Algorithms:</h2>
-      <v-chip-group active-class="primary--text" column>
-        <v-chip
-          v-for="(item, index) in item.nomeal"
-          :key="index"
-          :href="`/tags/algorithm/${item.tag_link}`"
-        >
-          {{ item.tag }}
-        </v-chip>
-      </v-chip-group>
-    </v-card-text>
-
-    <v-card-text>
-      <h2 class="text-h6 mb-2">Plataform:</h2>
-      <v-chip-group active-class="primary--text" column>
-        <v-chip
-          v-for="(item, index) in item.nomeplat"
-          :key="index"
-          :href="`/tags/plataform/${item.tag_link}`"
-        >
-          {{ item.tag }}
-        </v-chip>
-      </v-chip-group>
-    </v-card-text>
-
-    <v-card-text>
-      <h2 class="text-h6 mb-2">Industry:</h2>
-      <v-chip-group active-class="primary--text" column>
-        <v-chip
-          v-for="(item, index) in item.nomeind"
-          :key="index"
-          :href="`/tags/industry/${item.tag_link}`"
-        >
-          {{ item.tag }}
-        </v-chip>
-      </v-chip-group>
-    </v-card-text>
-
-    <v-card-text>
-      <h2 class="text-h6 mb-2">Categories:</h2>
-      <v-chip-group active-class="primary--text" column>
-        <v-chip
-          v-for="(item, index) in item.nomecat"
-          :key="index"
-          :href="`/tags/categories/${item.tag_link}`"
-        >
-          {{ item.tag }}
-        </v-chip>
-      </v-chip-group>
-    </v-card-text>
-    <div class="mb-12 text-center">
-      <v-dialog v-model="dialog" width="600px">
-        <template v-slot:activator="{ on, attrs }">
-          <v-img
-            :src="
-              'https://s2.coinmarketcap.com/static/img/coins/128x128/' +
-              item.id +
-              '.png'
-            "
-            :alt="item.name"
-            v-bind="attrs"
-            v-on="on"
-            height="100px"
-            max-width="100px"
-          >
-          </v-img>
-        </template>
-
-        <v-card>
-          <v-card-title class="text-h5 grey lighten-2">
-            Tell Me More About {{ item.name }}
-          </v-card-title>
-          <v-container />
-
-          <v-card-text>
-            {{ item.about }}
-          </v-card-text>
-
-          <v-divider></v-divider>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="dialog = false"> Ok </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </div>
-
     <div>
-      <v-menu bottom offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn class="ma-2" v-bind="attrs" v-on="on"> A Menu </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="(item, i) in item.explorers.split(';')" :key="i">
-            <a :href="`${item}`">{{ item }}</a>
-            <!-- <v-list-item> <a :href="`${item}`">{{item}}</a></v-list-item> -->
-
-            <!-- <v-list-item-title ><a :href="`${item}`" target="_blank"> {{ item }} </a></v-list-item-title> -->
-          </v-list-item>
-        </v-list>
-      </v-menu>
+      <p>{{item.about}}</p>
     </div>
-    <!-- </v-chip-group> -->
-    <!-- </v-card-text> -->
+    
 
-    <v-btn href="coin/1">Ola</v-btn>
-    <v-container />
   </div>
 </template>
 
+
 <script>
-/*eslint-disable*/
 import { mapGetters } from "vuex";
 export default {
-  name: "Coin",
+  name: "Exchange",
   data: () => {
     return {
         item: {},
+        // categories: [],
+        // algorithms: [],
+        // industries: [],
+        // plataform: [],
         explorers: [],
         prices: {},
         tradingPairs: [],
@@ -232,7 +153,6 @@ export default {
         totalItems: 0,
         numberOfPages: 0,
         loading: true,
-        dialog: false,
         options: {
 
         },
@@ -309,7 +229,7 @@ export default {
   },
 
   created() {
-      this.buscarCoin();
+      this.buscarExchange();
       //this.readData();
   },
 
@@ -325,13 +245,13 @@ export default {
       //   window.open(link, target);
       // },
 
-      buscarCoin(){
+      buscarExchange(){
         let url = window.location.href
-        let coin_id = url.split("/").slice(-1).pop()
-        this.$request("get", `coins/${coin_id}`)
+        let exchange_slug = url.split("/").slice(-1).pop()
+        this.$request("get", `exchanges/${exchange_slug}`)
         .then((data) => {
             console.log('data-total', data)
-            console.log('data.data[0]', data.data[0])
+            //console.log('data.data[0]', data.data[0])
             // data.map(e => {
             //   console.log('e', e)
             // })
@@ -348,7 +268,7 @@ export default {
         .catch((e) => console.log(e));
         },
 
-      getPairs(type, coin_slug){
+      getPairs(type, exchange_slug){
         console.log('getPairs')
 
         this.loading = true;
@@ -359,7 +279,7 @@ export default {
         //console.log('pag number', pageNumber)
         //console.log('slug', coin_slug)
 
-        let url = 'tradingPairs/'+ coin_slug +'/type/' + type + 'Pair?size=' + itemsPerPage + '&page=' + pageNumber
+        let url = 'tradingPairs/exchange/'+ exchange_slug +'/type/' + type + 'Pair?size=' + itemsPerPage + '&page=' + pageNumber
         console.log('url', url)
         
         this.$request("get", url)
@@ -372,7 +292,7 @@ export default {
             
             let ids = data.data.dados.map((e) => e.marketid).toString();
             //console.log('ids', ids);
-            this.getPrices(ids, data.data.dados, coin_slug, type.toLowerCase());
+            this.getPrices(ids, data.data.dados, exchange_slug, type.toLowerCase());
           })
           .catch((e) => console.log(e));
 
@@ -383,14 +303,14 @@ export default {
       console.log('options', this.options)
       let myurl = window.location.href
 
-      let coin_slug = myurl.split("/").slice(-1).pop()
+      let exchange_slug = myurl.split("/").slice(-1).pop()
       this.loading = true;
       const { page, itemsPerPage } = this.options;
       let pageNumber = page - 1;
       pageNumber = pageNumber === -1 ? 0 : pageNumber;
 
-      let url = 'tradingPairs/'+ coin_slug +'/type/SpotPair?size=' + itemsPerPage + '&page=' + pageNumber
-      console.log('url', url)
+      let url = 'tradingPairs/exchange/'+ exchange_slug +'/type/SpotPair?size=' + itemsPerPage + '&page=' + pageNumber
+      console.log('readData url', url)
       this.$request("get", url)
         .then((data) => {
           console.log('data -> ', data)
@@ -401,19 +321,23 @@ export default {
           
           let ids = data.data.dados.map((e) => e.marketid).toString();
           //console.log('ids', ids);
-          this.getPrices(ids, data.data.dados, coin_slug, 'spot');
+          this.getPrices(ids, data.data.dados, exchange_slug, 'spot');
         })
         .catch((e) => console.log(e));
 
     },
 
         getPrices(ids, dados, slug, type) {
-            this.$request("getp", `marketPairPrice?slug=${slug}&category=${type}&market=${ids}`)
+            let url = `marketPairPriceExchange?slug=${slug}&category=${type}&market=${ids}`
+            console.log('getPrices url', url)
+            this.$request("getp", `marketPairPriceExchange?slug=${slug}&category=${type}&market=${ids}`)
             .then((data) => {
                 //console.log(data.data);
                 let prices = Object.values(data.data).map((item) => {
                 return item;
                 });
+
+                console.log('prices', prices)
                 this.items1 = dados;
                 prices.map((e, index) => {
                 this.items1[index]["prices"] = e;
